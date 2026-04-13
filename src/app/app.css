@@ -1,0 +1,35 @@
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem;
+  background-color: var(--bg-main);
+  transition: padding 0.3s ease;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+    padding-top: calc(var(--header-height) + 1rem);
+  }
+  
+  .content-wrapper {
+    padding-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .main-content {
+    padding: calc(var(--header-height) + 1rem) 1rem 2rem;
+  }
+}
