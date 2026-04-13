@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ThemeToggle } from './theme-toggle';
 
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [ThemeToggle],
   template: `
     <header class="mobile-header">
       <button class="toggle-btn" (click)="toggle.emit()" aria-label="Toggle Sidebar">
@@ -16,6 +18,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
       </div>
 
       <div class="spacer"></div>
+      
+      <app-theme-toggle></app-theme-toggle>
     </header>
   `,
   styles: [`

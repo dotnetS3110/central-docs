@@ -86,7 +86,7 @@ import { Component } from '@angular/core';
       margin-bottom: 4rem;
     }
     .feature-card {
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--bg-box);
       border: 1px solid var(--border-glass);
       padding: 2rem;
       border-radius: 20px;
@@ -94,7 +94,7 @@ import { Component } from '@angular/core';
       transition: all 0.3s ease;
     }
     .feature-card:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--bg-card);
       transform: translateY(-5px);
       border-color: var(--secondary);
     }

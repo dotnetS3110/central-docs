@@ -285,7 +285,7 @@ import { Component } from '@angular/core';
         flex-direction: column;
         gap: 0.25rem;
         padding: 0.75rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid var(--border-dim);
       }
 
       .cmd-row:first-child {

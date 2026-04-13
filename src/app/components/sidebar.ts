@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeToggle } from './theme-toggle';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ThemeToggle],
   template: `
     <aside class="sidebar" [class.open]="isOpen">
       <div class="logo">
@@ -33,12 +34,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       </nav>
 
       <div class="sidebar-footer">
-        <div class="user-profile">
-          <div class="avatar">V</div>
-          <div class="user-info">
-            <p class="name">Vansh</p>
-            <p class="role">Developer</p>
+        <div class="footer-top">
+          <div class="user-profile">
+            <div class="avatar">V</div>
+            <div class="user-info">
+              <p class="name">Vansh</p>
+              <p class="role">Developer</p>
+            </div>
           </div>
+          <app-theme-toggle></app-theme-toggle>
         </div>
       </div>
     </aside>
@@ -138,6 +142,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       border-top: 1px solid var(--border-glass);
     }
 
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .user-profile {
       display: flex;
       align-items: center;
@@ -155,7 +165,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       font-weight: 600;
     }
 
-    .user-info .name { font-size: 0.9rem; font-weight: 600; margin: 0; }
+    .user-info .name { font-size: 0.9rem; font-weight: 600; margin: 0; color: var(--text-main); }
     .user-info .role { font-size: 0.75rem; color: var(--text-dim); margin: 0; }
 
     .sidebar-overlay {

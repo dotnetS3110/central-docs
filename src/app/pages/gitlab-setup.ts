@@ -133,15 +133,15 @@ ssh-add ~/.ssh/id_ed25519</code></pre>
     }
 
     pre {
-      background: rgba(0, 0, 0, 0.3);
+      background: var(--bg-code);
       padding: 1.25rem;
       border-radius: 12px;
       overflow-x: auto;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-dim);
     }
 
     code {
-      color: #e2e8f0;
+      color: var(--text-main);
       font-size: 0.9rem;
     }
 
@@ -150,7 +150,7 @@ ssh-add ~/.ssh/id_ed25519</code></pre>
     }
 
     .ssh-section {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.7));
+      background: var(--bg-card);
       padding: 2.5rem;
       border-radius: 24px;
       border: 1px solid var(--border-glass);
