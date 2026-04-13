@@ -9,8 +9,9 @@ import { Component } from '@angular/core';
         <div class="github-badge">GitHub</div>
         <h1>GIT CHEAT SHEET</h1>
         <p class="intro">
-          Git is the free and open source distributed version control system that's responsible for everything GitHub related that happens locally on your computer.
-          This cheat sheet features the most important and commonly used Git commands for easy reference.
+          Git is the free and open source distributed version control system that's responsible for
+          everything GitHub related that happens locally on your computer. This cheat sheet features
+          the most important and commonly used Git commands for easy reference.
         </p>
       </div>
 
@@ -88,6 +89,25 @@ import { Component } from '@angular/core';
               <div class="cmd-row">
                 <code>git commit -m "[msg]"</code>
                 <span>commit staged content as a new snapshot</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cheat-card secondary">
+            <h3>TEMPORARY COMMITS</h3>
+            <p class="desc">Temporarily store modified, tracked files.</p>
+            <div class="cmd-group">
+              <div class="cmd-row">
+                <code>git stash</code>
+                <span>save modified and staged changes</span>
+              </div>
+              <div class="cmd-row">
+                <code>git stash pop</code>
+                <span>write working from top of stash stack</span>
+              </div>
+              <div class="cmd-row">
+                <code>git stash drop</code>
+                <span>discard changes from top of stash stack</span>
               </div>
             </div>
           </section>
@@ -178,158 +198,145 @@ import { Component } from '@angular/core';
               </div>
             </div>
           </section>
-
-          <section class="cheat-card secondary">
-            <h3>TEMPORARY COMMITS</h3>
-            <p class="desc">Temporarily store modified, tracked files.</p>
-            <div class="cmd-group">
-              <div class="cmd-row">
-                <code>git stash</code>
-                <span>save modified and staged changes</span>
-              </div>
-              <div class="cmd-row">
-                <code>git stash pop</code>
-                <span>write working from top of stash stack</span>
-              </div>
-              <div class="cmd-row">
-                <code>git stash drop</code>
-                <span>discard changes from top of stash stack</span>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </div>
   `,
-  styles: [`
-    .cheat-sheet-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding-bottom: 5rem;
-    }
-
-    .header {
-      background: #47a185; /* GitHub Education Green */
-      padding: 3rem;
-      border-radius: 24px;
-      margin-bottom: 3rem;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .github-badge {
-      background: rgba(255, 255, 255, 0.2);
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-    }
-
-    .header h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .intro {
-      max-width: 700px;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    .cheat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-
-    .cheat-col {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .cheat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-glass);
-      padding: 2rem;
-      border-radius: 20px;
-      backdrop-filter: blur(8px);
-    }
-
-    .cheat-card h3 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      color: #47a185;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .cheat-card .desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .cmd-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      padding: 0.75rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .cmd-row:first-child {
-      border-top: none;
-    }
-
-    code {
-      font-family: 'Fira Code', monospace;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .cmd-row span {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-    }
-
-    .info-links .link-item {
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-main);
-    }
-
-    .cheat-card.highlight {
-      border-color: var(--primary);
-    }
-
-    .cheat-card.warning h3 { color: var(--error); }
-    .cheat-card.secondary h3 { color: var(--secondary); }
-
-    .cheat-footer {
-      margin-top: 4rem;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.9rem;
-    }
-
-    @media screen and (max-width: 800px) {
-      .cheat-grid {
-        grid-template-columns: 1fr;
+  styles: [
+    `
+      .cheat-sheet-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-bottom: 5rem;
       }
+
+      .header {
+        background: #47a185; /* GitHub Education Green */
+        padding: 3rem;
+        border-radius: 24px;
+        margin-bottom: 3rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .github-badge {
+        background: rgba(255, 255, 255, 0.2);
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+
       .header h1 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
       }
-    }
-  `]
+
+      .intro {
+        max-width: 700px;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .cheat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .cheat-col {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .cheat-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-glass);
+        padding: 2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(8px);
+      }
+
+      .cheat-card h3 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        color: #47a185;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .cheat-card .desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .cmd-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.75rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .cmd-row:first-child {
+        border-top: none;
+      }
+
+      code {
+        font-family: 'Fira Code', monospace;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .cmd-row span {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+
+      .info-links .link-item {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-main);
+      }
+
+      .cheat-card.highlight {
+        border-color: var(--primary);
+      }
+
+      .cheat-card.warning h3 {
+        color: var(--error);
+      }
+      .cheat-card.secondary h3 {
+        color: var(--secondary);
+      }
+
+      .cheat-footer {
+        margin-top: 4rem;
+        text-align: center;
+        color: var(--text-dim);
+        font-size: 0.9rem;
+      }
+
+      @media screen and (max-width: 800px) {
+        .cheat-grid {
+          grid-template-columns: 1fr;
+        }
+        .header h1 {
+          font-size: 2.5rem;
+        }
+      }
+    `,
+  ],
 })
 export class GitCheatSheet { }
