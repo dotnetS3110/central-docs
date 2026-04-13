@@ -34,10 +34,6 @@ import { Component } from '@angular/core';
           <p>Step-by-step guides for complex tasks like GitLab setup and SSH configuration.</p>
         </div>
       </div>
-
-      <div class="footer">
-        <p>Built with ❤️ using Angular 21</p>
-      </div>
     </div>
   `,
   styles: [`
