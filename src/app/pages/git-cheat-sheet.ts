@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CopyButton } from '../components/copy-button';
 
 @Component({
   selector: 'app-git-cheat-sheet',
   standalone: true,
+  imports: [CommonModule, CopyButton],
   template: `
     <div class="cheat-sheet-container fade-in">
       <div class="header">
@@ -33,15 +36,24 @@ import { Component } from '@angular/core';
             <p class="desc">Configuring user information for all local repositories.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git config --global user.name "[name]"</code>
+                <div class="cmd-header">
+                  <code>git config --global user.name "[name]"</code>
+                  <app-copy-button text='git config --global user.name "[name]"'></app-copy-button>
+                </div>
                 <span>set identifiable name for credit</span>
               </div>
               <div class="cmd-row">
-                <code>git config --global user.email "[email]"</code>
+                <div class="cmd-header">
+                  <code>git config --global user.email "[email]"</code>
+                  <app-copy-button text='git config --global user.email "[email]"'></app-copy-button>
+                </div>
                 <span>set associated history marker email</span>
               </div>
               <div class="cmd-row">
-                <code>git config --global color.ui auto</code>
+                <div class="cmd-header">
+                  <code>git config --global color.ui auto</code>
+                  <app-copy-button text='git config --global color.ui auto'></app-copy-button>
+                </div>
                 <span>automatic command line coloring</span>
               </div>
             </div>
@@ -52,11 +64,17 @@ import { Component } from '@angular/core';
             <p class="desc">Initializing and cloning repositories.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git init</code>
+                <div class="cmd-header">
+                  <code>git init</code>
+                  <app-copy-button text="git init"></app-copy-button>
+                </div>
                 <span>initialize existing directory as Git repo</span>
               </div>
               <div class="cmd-row">
-                <code>git clone [url]</code>
+                <div class="cmd-header">
+                  <code>git clone [url]</code>
+                  <app-copy-button text="git clone [url]"></app-copy-button>
+                </div>
                 <span>retrieve entire repo from hosted location</span>
               </div>
             </div>
@@ -67,27 +85,45 @@ import { Component } from '@angular/core';
             <p class="desc">Working with snapshots and the Git staging area.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git status</code>
+                <div class="cmd-header">
+                  <code>git status</code>
+                  <app-copy-button text="git status"></app-copy-button>
+                </div>
                 <span>show modified files in working directory</span>
               </div>
               <div class="cmd-row">
-                <code>git add [file]</code>
+                <div class="cmd-header">
+                  <code>git add [file]</code>
+                  <app-copy-button text="git add [file]"></app-copy-button>
+                </div>
                 <span>add a file as it looks now to next commit</span>
               </div>
               <div class="cmd-row">
-                <code>git reset [file]</code>
+                <div class="cmd-header">
+                  <code>git reset [file]</code>
+                  <app-copy-button text="git reset [file]"></app-copy-button>
+                </div>
                 <span>unstage a file while retaining changes</span>
               </div>
               <div class="cmd-row">
-                <code>git diff</code>
+                <div class="cmd-header">
+                  <code>git diff</code>
+                  <app-copy-button text="git diff"></app-copy-button>
+                </div>
                 <span>diff of what is changed but not staged</span>
               </div>
               <div class="cmd-row">
-                <code>git diff --staged</code>
+                <div class="cmd-header">
+                  <code>git diff --staged</code>
+                  <app-copy-button text="git diff --staged"></app-copy-button>
+                </div>
                 <span>diff of what is staged but not yet committed</span>
               </div>
               <div class="cmd-row">
-                <code>git commit -m "[msg]"</code>
+                <div class="cmd-header">
+                  <code>git commit -m "[msg]"</code>
+                  <app-copy-button text='git commit -m "[msg]"'></app-copy-button>
+                </div>
                 <span>commit staged content as a new snapshot</span>
               </div>
             </div>
@@ -98,15 +134,24 @@ import { Component } from '@angular/core';
             <p class="desc">Temporarily store modified, tracked files.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git stash</code>
+                <div class="cmd-header">
+                  <code>git stash</code>
+                  <app-copy-button text="git stash"></app-copy-button>
+                </div>
                 <span>save modified and staged changes</span>
               </div>
               <div class="cmd-row">
-                <code>git stash pop</code>
+                <div class="cmd-header">
+                  <code>git stash pop</code>
+                  <app-copy-button text="git stash pop"></app-copy-button>
+                </div>
                 <span>write working from top of stash stack</span>
               </div>
               <div class="cmd-row">
-                <code>git stash drop</code>
+                <div class="cmd-header">
+                  <code>git stash drop</code>
+                  <app-copy-button text="git stash drop"></app-copy-button>
+                </div>
                 <span>discard changes from top of stash stack</span>
               </div>
             </div>
@@ -120,23 +165,38 @@ import { Component } from '@angular/core';
             <p class="desc">Isolating work in branches, changing context.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git branch</code>
+                <div class="cmd-header">
+                  <code>git branch</code>
+                  <app-copy-button text="git branch"></app-copy-button>
+                </div>
                 <span>list branches, * appears next to active</span>
               </div>
               <div class="cmd-row">
-                <code>git branch [name]</code>
+                <div class="cmd-header">
+                  <code>git branch [name]</code>
+                  <app-copy-button text="git branch [name]"></app-copy-button>
+                </div>
                 <span>create a new branch at current commit</span>
               </div>
               <div class="cmd-row">
-                <code>git checkout [name]</code>
+                <div class="cmd-header">
+                  <code>git checkout [name]</code>
+                  <app-copy-button text="git checkout [name]"></app-copy-button>
+                </div>
                 <span>switch to another branch and check it out</span>
               </div>
               <div class="cmd-row">
-                <code>git merge [branch]</code>
+                <div class="cmd-header">
+                  <code>git merge [branch]</code>
+                  <app-copy-button text="git merge [branch]"></app-copy-button>
+                </div>
                 <span>merge branch's history into current one</span>
               </div>
               <div class="cmd-row">
-                <code>git log</code>
+                <div class="cmd-header">
+                  <code>git log</code>
+                  <app-copy-button text="git log"></app-copy-button>
+                </div>
                 <span>show all commits in current branch's history</span>
               </div>
             </div>
@@ -147,15 +207,24 @@ import { Component } from '@angular/core';
             <p class="desc">Examining logs, diffs and object information.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git log</code>
+                <div class="cmd-header">
+                  <code>git log</code>
+                  <app-copy-button text="git log"></app-copy-button>
+                </div>
                 <span>show commit history for active branch</span>
               </div>
               <div class="cmd-row">
-                <code>git log branchA..branchB</code>
+                <div class="cmd-header">
+                  <code>git log branchA..branchB</code>
+                  <app-copy-button text="git log branchA..branchB"></app-copy-button>
+                </div>
                 <span>show commits on B not on A</span>
               </div>
               <div class="cmd-row">
-                <code>git show [SHA]</code>
+                <div class="cmd-header">
+                  <code>git show [SHA]</code>
+                  <app-copy-button text="git show [SHA]"></app-copy-button>
+                </div>
                 <span>show any object in human-readable format</span>
               </div>
             </div>
@@ -166,19 +235,31 @@ import { Component } from '@angular/core';
             <p class="desc">Retrieving updates and updating local repos.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git remote add [alias] [url]</code>
+                <div class="cmd-header">
+                  <code>git remote add [alias] [url]</code>
+                  <app-copy-button text="git remote add [alias] [url]"></app-copy-button>
+                </div>
                 <span>add a git URL as an alias</span>
               </div>
               <div class="cmd-row">
-                <code>git fetch [alias]</code>
+                <div class="cmd-header">
+                  <code>git fetch [alias]</code>
+                  <app-copy-button text="git fetch [alias]"></app-copy-button>
+                </div>
                 <span>fetch down all branches from remote</span>
               </div>
               <div class="cmd-row">
-                <code>git push [alias] [branch]</code>
+                <div class="cmd-header">
+                  <code>git push [alias] [branch]</code>
+                  <app-copy-button text="git push [alias] [branch]"></app-copy-button>
+                </div>
                 <span>transmit local commits to remote repo</span>
               </div>
               <div class="cmd-row">
-                <code>git pull</code>
+                <div class="cmd-header">
+                  <code>git pull</code>
+                  <app-copy-button text="git pull"></app-copy-button>
+                </div>
                 <span>fetch and merge any commits from tracking</span>
               </div>
             </div>
@@ -189,11 +270,17 @@ import { Component } from '@angular/core';
             <p class="desc">Rewriting branches, updating commits.</p>
             <div class="cmd-group">
               <div class="cmd-row">
-                <code>git rebase [branch]</code>
+                <div class="cmd-header">
+                  <code>git rebase [branch]</code>
+                  <app-copy-button text="git rebase [branch]"></app-copy-button>
+                </div>
                 <span>apply current branch ahead of specified one</span>
               </div>
               <div class="cmd-row">
-                <code>git reset --hard [commit]</code>
+                <div class="cmd-header">
+                  <code>git reset --hard [commit]</code>
+                  <app-copy-button text="git reset --hard [commit]"></app-copy-button>
+                </div>
                 <span>clear staging area, rewrite working tree</span>
               </div>
             </div>
@@ -290,6 +377,13 @@ import { Component } from '@angular/core';
 
       .cmd-row:first-child {
         border-top: none;
+      }
+
+      .cmd-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
       }
 
       code {

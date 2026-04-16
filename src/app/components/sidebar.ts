@@ -60,6 +60,25 @@ import { ThemeToggle } from './theme-toggle';
           </span>
           <span class="label">Git Cheat Sheet</span>
         </a>
+        <a routerLink="/angular-commands" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12l10 5 10-5"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            </svg>
+          </span>
+          <span class="label">Angular Commands</span>
+        </a>
+        <a routerLink="/mvc-generator" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
+          <span class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+          </span>
+          <span class="label">MVC Generator</span>
+        </a>
       </nav>
 
       <div class="sidebar-footer">
@@ -68,7 +87,7 @@ import { ThemeToggle } from './theme-toggle';
             <div class="avatar">V</div>
             <div class="user-info">
               <p class="name">Vansh</p>
-              <p class="role">Developer</p>
+              <p class="role">FullStack Developer</p>
             </div>
           </div>
           <app-theme-toggle></app-theme-toggle>
