@@ -1,0 +1,69 @@
+    <div class="dashboard fade-in">
+      <div class="dashboard-header">
+        <h1>Live Analytics</h1>
+        <p class="subtitle">Real-time performance and documentation engagement analysis.</p>
+        <div class="live-indicator">
+          <span class="pulse"></span>
+          Live System Monitoring
+        </div>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-card premium">
+          <div class="stat-info">
+            <span class="label">Total Guides</span>
+            <span class="value">{{ stats.guides }}</span>
+          </div>
+          <div class="stat-trend positive">Active</div>
+        </div>
+        <div class="stat-card premium">
+          <div class="stat-info">
+            <span class="label">Live Sessions</span>
+            <span class="value">{{ stats.sessions }}</span>
+          </div>
+          <div class="stat-trend" [class.positive]="stats.sessions > 5">
+            {{ stats.sessions > 10 ? 'High Traffic' : 'Normal' }}
+          </div>
+        </div>
+        <div class="stat-card premium">
+          <div class="stat-info">
+            <span class="label">System Load</span>
+            <span class="value">{{ stats.load }}%</span>
+          </div>
+          <div class="stat-trend" [class.negative]="stats.load > 70">
+            {{ stats.load > 70 ? 'Stressed' : 'Peak Healthy' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content-grid">
+        <div class="chart-container-wrapper">
+          <div class="chart-header">
+            <h3>System Performance Flow</h3>
+            <div class="chart-actions">
+              <span class="badge">Real-time</span>
+            </div>
+          </div>
+          <div class="chart-canvas-container">
+            <canvas #chartCanvas></canvas>
+          </div>
+        </div>
+
+        <div class="side-panel">
+          <div class="recent-activity">
+            <h3>Live Activity Feed</h3>
+            <div class="activity-list">
+              <div *ngFor="let activity of activities" class="activity-item fade-in-up">
+                <div class="activity-icon" [style.background]="activity.color">
+                  <span class="icon">{{ activity.icon }}</span>
+                </div>
+                <div class="activity-details">
+                  <p>{{ activity.message }}</p>
+                  <span class="time">{{ activity.time }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

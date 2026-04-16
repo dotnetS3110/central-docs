@@ -1,0 +1,84 @@
+    <div class="page-header fade-in">
+      <h1>🚀 GitLab Repository Setup (SSH)</h1>
+      <p class="subtitle">Quick guide to pushing projects to GitLab effortlessly.</p>
+    </div>
+
+    <div class="content-grid fade-in">
+      <section class="step-card">
+        <div class="step-icon">01</div>
+        <h2>Navigate to Folder</h2>
+        <div class="code-container">
+          <pre><code>cd existing_folder</code></pre>
+          <app-copy-button text="cd existing_folder"></app-copy-button>
+        </div>
+      </section>
+
+      <section class="step-card">
+        <div class="step-icon">02</div>
+        <h2>Initialize Git</h2>
+        <div class="code-container">
+          <pre><code>git init --initial-branch=main --object-format=sha1</code></pre>
+          <app-copy-button text="git init --initial-branch=main --object-format=sha1"></app-copy-button>
+        </div>
+      </section>
+
+      <section class="step-card">
+        <div class="step-icon">03</div>
+        <h2>Add Remote</h2>
+        <div class="code-container">
+          <pre><code>git remote add origin git&#64;ws-srv-git.in.webmyne.com:template/modernize-angular-admin-panel.git</code></pre>
+          <app-copy-button text="git remote add origin git&#64;ws-srv-git.in.webmyne.com:template/modernize-angular-admin-panel.git"></app-copy-button>
+        </div>
+      </section>
+
+      <section class="step-card highlight">
+        <div class="step-icon">04</div>
+        <h2>Commit & Push</h2>
+        <div class="code-container">
+          <pre><code>git add .
+git commit -m "Initial commit"
+git push --set-upstream origin main</code></pre>
+          <app-copy-button text='git add .
+git commit -m "Initial commit"
+git push --set-upstream origin main'></app-copy-button>
+        </div>
+      </section>
+
+      <section class="full-width ssh-section">
+        <h2>🔐 SSH Security Setup</h2>
+        <p>Ensure your secure connection by configuring SSH keys.</p>
+        <div class="code-block-wrapper">
+          <div class="code-container">
+            <pre><code>ssh-keygen -t ed25519 -C "your_email&#64;example.com"
+ssh-add ~/.ssh/id_ed25519</code></pre>
+            <app-copy-button text='ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-add ~/.ssh/id_ed25519'></app-copy-button>
+          </div>
+        </div>
+        
+        <p class="secondary-info">Copy your public key and add it to GitLab Settings:</p>
+        <div class="code-container">
+          <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
+          <app-copy-button text="cat ~/.ssh/id_ed25519.pub"></app-copy-button>
+        </div>
+
+        <div class="test-connection success">
+          <span class="icon">🧪</span>
+          <div class="test-msg">
+            <span>Test connection: <code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></span>
+            <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
+          </div>
+        </div>
+
+        <div class="note-box warning">
+          <span class="icon">⚠️</span>
+          <p><strong>Note:</strong> For custom keys, configure <code>~/.ssh/config</code>.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="completion-footer fade-in">
+      <div class="check-icon">✓</div>
+      <h2>Successfully Setup!</h2>
+      <p>Your repository is now connected and ready for deployment.</p>
+    </div>

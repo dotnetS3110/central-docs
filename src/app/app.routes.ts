@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './pages/dashboard';
-import { GitlabSetup } from './pages/gitlab-setup';
-import { About } from './pages/about';
-import { GitCheatSheet } from './pages/git-cheat-sheet';
-import { MvcPromptGenerator } from './pages/mvc-prompt-generator';
-import { AngularCommands } from './pages/angular-commands';
+import { Dashboard } from './pages/dashboard/dashboard';
+import { GitlabSetup } from './pages/gitlab-setup/gitlab-setup';
+import { About } from './pages/about/about';
+import { GitCheatSheet } from './pages/git-cheat-sheet/git-cheat-sheet';
+import { MvcPromptGenerator } from './pages/mvc-prompt-generator/mvc-prompt-generator';
+import { AngularCommands } from './pages/angular-commands/angular-commands';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
