@@ -1,51 +1,54 @@
-    <div class="generator-page fade-in">
-      <div class="header">
-        <h1>MVC Prompt Generator</h1>
-        <p class="subtitle">Quickly generate standardized prompts for MVC application development using Clean Architecture.</p>
+<div class="cheat-sheet-container fade-in">
+  
+  <div class="header">
+    <div class="mvc-badge">ASP.NET MVC</div>
+    <h1>MVC PROMPT GENERATOR</h1>
+    <p class="intro">Quickly generate standardized prompts for MVC application development using Clean Architecture principles.</p>
+  </div>
+
+  <div class="form-container premium-card">
+    <div class="grid">
+      <div class="form-group">
+        <label>MVC App Name</label>
+        <input [(ngModel)]="appName" placeholder="e.g. StudentManagement" class="premium-input">
       </div>
-
-      <div class="form-container premium-card">
-        <div class="grid">
-          <div class="form-group">
-            <label>MVC App Name</label>
-            <input [(ngModel)]="appName" placeholder="e.g. StudentManagement" class="premium-input">
-          </div>
-          <div class="form-group">
-            <label>Model Name</label>
-            <input [(ngModel)]="modelName" placeholder="e.g. Student" class="premium-input">
-          </div>
-          <div class="form-group">
-            <label>Model Field</label>
-            <input [(ngModel)]="modelField" placeholder="e.g. Name, Age" class="premium-input">
-          </div>
-          <div class="form-group">
-            <label>Pattern</label>
-            <select [(ngModel)]="pattern" class="premium-input">
-              <option value="repository">Repository Pattern</option>
-              <option value="service">Service Pattern</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group full-width">
-          <label>Connection String</label>
-          <input [(ngModel)]="connectionString" placeholder="e.g. Server=...;Database=..." class="premium-input">
-        </div>
-
-        <button (click)="generatePrompt()" class="generate-btn">
-          <span>Generate Prompt</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </button>
+      <div class="form-group">
+        <label>Model Name</label>
+        <input [(ngModel)]="modelName" placeholder="e.g. Student" class="premium-input">
       </div>
-
-      <div *ngIf="generatedPrompt" class="result-container premium-card fade-in">
-        <div class="result-header">
-          <h3>Generated Prompt</h3>
-          <app-copy-button [text]="generatedPrompt" class="large-copy"></app-copy-button>
-        </div>
-        <div class="prompt-box">
-          <p class="prompt-text">{{ generatedPrompt }}</p>
-        </div>
+      <div class="form-group">
+        <label>Model Field</label>
+        <input [(ngModel)]="modelField" placeholder="e.g. Name, Age" class="premium-input">
+      </div>
+      <div class="form-group">
+        <label>Pattern</label>
+        <select [(ngModel)]="pattern" class="premium-input">
+          <option value="repository">Repository Pattern</option>
+          <option value="service">Service Pattern</option>
+        </select>
       </div>
     </div>
+    <div class="form-group full-width">
+      <label>Connection String</label>
+      <input [(ngModel)]="connectionString" placeholder="e.g. Server=...;Database=..." class="premium-input">
+    </div>
+
+    <button (click)="generatePrompt()" class="generate-btn">
+      <span>Generate Prompt</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+
+  <div *ngIf="generatedPrompt" class="result-container premium-card fade-in">
+    <div class="result-header">
+      <h3>Generated Prompt</h3>
+      <app-copy-button [text]="generatedPrompt" class="large-copy"></app-copy-button>
+    </div>
+    <div class="prompt-box">
+      <p class="prompt-text">{{ generatedPrompt }}</p>
+    </div>
+  </div>
+
+</div>

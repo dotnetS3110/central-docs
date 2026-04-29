@@ -4,6 +4,7 @@ import { GitlabSetup } from './pages/gitlab-setup/gitlab-setup';
 import { About } from './pages/about/about';
 import { GitCheatSheet } from './pages/git-cheat-sheet/git-cheat-sheet';
 import { MvcPromptGenerator } from './pages/mvc-prompt-generator/mvc-prompt-generator';
+import { ErpBlueprint } from './pages/erp-blueprint/erp-blueprint';
 import { AngularCommands } from './pages/angular-commands/angular-commands';
 
 export const routes: Routes = [
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'git-cheat-sheet', component: GitCheatSheet },
   { path: 'mvc-generator', component: MvcPromptGenerator },
   { path: 'angular-commands', component: AngularCommands },
+  { path: 'erp-blueprint', component: ErpBlueprint },
   { path: '**', redirectTo: 'dashboard' }
 ];
