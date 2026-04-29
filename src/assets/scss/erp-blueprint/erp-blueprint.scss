@@ -209,6 +209,7 @@
 
 .dep-svg {
   width: 100%;
+  height: auto;
   max-width: 720px;
   margin: 0 auto;
   display: block;
@@ -559,10 +560,97 @@
 }
 
 @media screen and (max-width: 800px) {
-  .header h1 {
-    font-size: 2.5rem;
-  }
   .header {
     padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: clamp(2rem, 10vw, 2.5rem);
+    }
+  }
+
+  .layers {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .layer-card {
+    padding: 1.5rem;
+  }
+
+  .dep-wrap {
+    padding: 0.75rem;
+    border-radius: 16px;
+  }
+
+  .dep-svg {
+    max-width: 100%;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rules-list {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-bar {
+    gap: 2px;
+    padding: 2px;
+  }
+
+  .tab-btn {
+    padding: 10px 5px;
+    font-size: 11px;
+    min-width: 60px;
+  }
+
+  .fold-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .fold-table th,
+  .fold-table td {
+    padding: 0.75rem;
+    min-width: 120px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .flow-step {
+    .fs-body {
+      padding: 10px 12px;
+    }
+    .fs-num {
+      width: 36px;
+    }
+    .fs-circle {
+      width: 28px;
+      height: 28px;
+      font-size: 10px;
+    }
+  }
+
+  .blueprint-badge {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .intro {
+    font-size: 1rem;
   }
 }

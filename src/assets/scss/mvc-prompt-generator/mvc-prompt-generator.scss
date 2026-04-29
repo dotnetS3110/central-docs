@@ -198,13 +198,44 @@ select.premium-input {
 }
 
 @media screen and (max-width: 800px) {
-  .header h1 {
-    font-size: 2.5rem;
-  }
   .header {
     padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: clamp(2rem, 10vw, 2.5rem);
+    }
   }
+
+  .premium-card {
+    padding: 1.5rem;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .generate-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prompt-box {
+    padding: 1.5rem;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+}
+

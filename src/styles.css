@@ -75,7 +75,15 @@ a:hover {
 
 code, pre {
   font-family: 'Fira Code', monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
 }
+
+pre {
+  overflow-x: auto;
+}
+
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {

@@ -129,9 +129,12 @@
   }
 
   &.active {
-    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 100%);
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.02) 100%);
     color: var(--primary);
-    border-left: 3px solid var(--primary);
+    border-left: 4px solid var(--primary);
+    margin-left: -1.5rem;
+    padding-left: calc(1.5rem + 1rem - 4px);
+    border-radius: 0 12px 12px 0;
 
     .icon {
       color: var(--primary);
@@ -199,6 +202,8 @@
 
 @media screen and (max-width: 1024px) {
   .sidebar {
+    width: 300px;
+    max-width: 90vw;
     transform: translateX(-100%);
     box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
 
@@ -209,6 +214,17 @@
 
   .mobile-close {
     display: flex;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.75rem;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    line-height: 1;
   }
 
   .nav-item {
@@ -219,10 +235,60 @@
 
 @media screen and (max-width: 480px) {
   .sidebar {
-    padding: 1.25rem 1rem;
+    width: 280px;
+    padding: 1.5rem 1.25rem;
   }
 
   .logo {
     margin-bottom: 2rem;
+    padding-right: 3rem; /* Space for close button */
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  .user-info {
+    .name {
+      font-size: 0.85rem;
+    }
+    .role {
+      font-size: 0.7rem;
+    }
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
   }
 }
+
+
+/* Ensure Footer Toggle doesn't overlap */
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.user-profile {
+  flex: 1;
+  min-width: 0; /* Allow shrinking for text truncation */
+}
+
+.user-info {
+  min-width: 0;
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+app-theme-toggle {
+  flex-shrink: 0;
+}
+
+
