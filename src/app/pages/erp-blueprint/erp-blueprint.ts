@@ -13,7 +13,7 @@ Chart.register(...registerables);
 })
 export class ErpBlueprint implements AfterViewInit, OnDestroy {
   activeTab: string = 'domain';
-  charts: Chart[] = [];
+  charts: any[] = [];
 
   ngAfterViewInit() {
     this.initCharts();
@@ -30,10 +30,10 @@ export class ErpBlueprint implements AfterViewInit, OnDestroy {
   highlightStep(event: MouseEvent) {
     const el = event.currentTarget as HTMLElement;
     const allSteps = document.querySelectorAll('.flow-step');
-    
+
     allSteps.forEach((s: any) => s.style.opacity = '0.45');
     el.style.opacity = '1';
-    
+
     setTimeout(() => {
       allSteps.forEach((s: any) => s.style.opacity = '1');
     }, 1800);
@@ -65,7 +65,7 @@ export class ErpBlueprint implements AfterViewInit, OnDestroy {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { 
+          plugins: {
             legend: { display: false },
             tooltip: {
               backgroundColor: 'rgba(15, 23, 42, 0.9)',
