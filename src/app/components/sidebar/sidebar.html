@@ -1,88 +1,42 @@
-     <aside class="sidebar" [class.open]="isOpen">
-      <div class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <span class="logo-text">Docs<span>Hub</span></span>
-        <button class="mobile-close" (click)="close.emit()">×</button>
-      </div>
-      
-      <nav class="nav-links">
-         <a routerLink="/dashboard" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="9"></rect>
-              <rect x="14" y="3" width="7" height="5"></rect>
-              <rect x="14" y="12" width="7" height="9"></rect>
-              <rect x="3" y="16" width="7" height="5"></rect>
-            </svg>
-          </span>
-          <span class="label">Dashboard</span>
-        </a>
-        <a routerLink="/about" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-          </span>
-          <span class="label">About</span>
-        </a>
-        <a routerLink="/gitlab-setup" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-          </span>
-          <span class="label">GitLab Setup</span>
-        </a>
-        <a routerLink="/git-cheat-sheet" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-            </svg>
-          </span>
-          <span class="label">Git Cheat Sheet</span>
-        </a>
-        <a routerLink="/angular-commands" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12l10 5 10-5"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            </svg>
-          </span>
-          <span class="label">Angular Commands</span>
-        </a>
-        <a routerLink="/mvc-generator" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
-          <span class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="4 17 10 11 4 5"></polyline>
-              <line x1="12" y1="19" x2="20" y2="19"></line>
-            </svg>
-          </span>
-          <span class="label">MVC Generator</span>
-        </a>
-      </nav>
+<aside class="sidebar" [class.open]="isOpen">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </div>
+    <span class="logo-text">Docs<span>Hub</span></span>
+    <button class="mobile-close" (click)="close.emit()">×</button>
+  </div>
 
-      <div class="sidebar-footer">
-        <div class="footer-top">
-          <div class="user-profile">
-            <div class="avatar">V</div>
-            <div class="user-info">
-              <p class="name">Vansh</p>
-              <p class="role">FullStack Developer</p>
-            </div>
-          </div>
-          <app-theme-toggle></app-theme-toggle>
+  <nav class="nav-links">
+    @for (group of menuGroups; track group.category) {
+    <div class="nav-category">{{ group.category }}</div>
+    @for (item of group.items; track item.label) {
+    <a [routerLink]="item.path" routerLinkActive="active" (click)="onLinkClick()" class="nav-item">
+      <span class="icon" [innerHTML]="item.icon"></span>
+      <span class="label">{{ item.label }}</span>
+    </a>
+    }
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="footer-top">
+      <div class="user-profile">
+        <div class="avatar">V</div>
+        <div class="user-info">
+          <p class="name">Vansh</p>
+          <p class="role">FullStack Developer</p>
         </div>
       </div>
-    </aside>
-    <div class="sidebar-overlay" [class.show]="isOpen" (click)="close.emit()"></div>
+      <app-theme-toggle></app-theme-toggle>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-overlay" [class.show]="isOpen" (click)="close.emit()"></div>

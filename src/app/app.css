@@ -1,6 +1,8 @@
 .app-container {
   display: flex;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .main-content {
@@ -8,8 +10,10 @@
   margin-left: var(--sidebar-width);
   padding: 2rem;
   background-color: var(--bg-main);
-  transition: padding 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 0;
 }
+
 
 .content-wrapper {
   max-width: 1200px;
@@ -20,16 +24,18 @@
 @media screen and (max-width: 1024px) {
   .main-content {
     margin-left: 0;
-    padding-top: calc(var(--header-height) + 1rem);
+    padding-top: calc(var(--header-height) + 1.5rem);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
-  
+
   .content-wrapper {
-    padding-top: 1rem;
+    padding-top: 0;
   }
 }
 
 @media screen and (max-width: 640px) {
   .main-content {
-    padding: calc(var(--header-height) + 1rem) 1rem 2rem;
+    padding: calc(var(--header-height) + 1.25rem) 1rem 3rem;
   }
 }

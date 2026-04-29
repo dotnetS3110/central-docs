@@ -1,13 +1,14 @@
 .about-page {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 .header {
   text-align: center;
   margin-bottom: 4rem;
 
   h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -78,3 +79,26 @@
   border-top: 1px solid var(--border-glass);
   color: var(--text-dim);
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    margin-bottom: 2.5rem;
+  }
+  .card {
+    padding: 2rem;
+  }
+  .mission-section {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
+

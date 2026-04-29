@@ -37,6 +37,20 @@
   }
 }
 
-.icon {
-  font-size: 0.8rem;
+@media screen and (max-width: 480px) {
+  .toggle-track {
+    width: 48px;
+    height: 24px;
+  }
+  .toggle-thumb {
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    left: 2px;
+
+    &.dark {
+      transform: translateX(24px);
+    }
+  }
 }
+
