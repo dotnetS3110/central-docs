@@ -654,3 +654,140 @@
     font-size: 1rem;
   }
 }
+/* INTERACTIVE TREE VIEW */
+.tree-toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.tbtn {
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .15s;
+  font-weight: 500;
+}
+
+.tbtn.on {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.tree-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 24px;
+  overflow-x: auto;
+  backdrop-filter: blur(8px);
+}
+
+.tree-line {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 3px 8px;
+  white-space: nowrap;
+  cursor: default;
+  border-radius: 6px;
+  transition: background .1s;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+.tree-line:hover {
+  background: var(--bg-box);
+}
+
+.tree-line.clickable {
+  cursor: pointer;
+}
+
+.tree-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+.folder-name {
+  font-weight: 600;
+}
+
+.tree-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 100px;
+  margin-left: 8px;
+  letter-spacing: .3px;
+  border: 0.5px solid transparent;
+}
+
+.tree-detail {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-left: 8px;
+}
+
+.tree-caret {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 9px;
+  transition: transform .15s;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+.tree-caret.open {
+  transform: rotate(90deg);
+}
+
+.tree-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-size: 11px;
+}
+
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.ldot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .tree-toolbar {
+    gap: 4px;
+  }
+  .tbtn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .tree-container {
+    padding: 16px;
+  }
+  .tree-line {
+    font-size: 12px;
+  }
+}

@@ -407,6 +407,54 @@
     </div>
   </div>
 
+  <!-- INTERACTIVE FOLDER STRUCTURE -->
+  <div class="section">
+    <div class="sec-title">Interactive Solution Structure</div>
+
+    <div class="tree-toolbar">
+      <button class="tbtn" [class.on]="activeTreeFilter === 'all'" (click)="expandTree('all')">Expand all</button>
+      <button class="tbtn" [class.on]="activeTreeFilter === 'collapse'" (click)="expandTree('collapse')">Collapse all</button>
+      <button class="tbtn" [class.on]="activeTreeFilter === 'product'" (click)="expandTree('product')">Show Product only</button>
+      <button class="tbtn" [class.on]="activeTreeFilter === 'order'" (click)="expandTree('order')">Show Order only</button>
+      <button class="tbtn" [class.on]="activeTreeFilter === 'user'" (click)="expandTree('user')">Show User only</button>
+    </div>
+
+    <div class="tree-legend">
+      <span class="leg"><span class="ldot" style="background:#534AB7"></span>Domain</span>
+      <span class="leg"><span class="ldot" style="background:#185FA5"></span>Application</span>
+      <span class="leg"><span class="ldot" style="background:#0F6E56"></span>Infrastructure</span>
+      <span class="leg"><span class="ldot" style="background:#993C1D"></span>API</span>
+      <span class="leg"><span class="ldot" style="background:#854F0B"></span>Tests</span>
+      <span class="leg"><span class="ldot" style="background:#5F5E5A"></span>Shared / config</span>
+    </div>
+
+    <div class="tree-container">
+      <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: treeData, depth: 0 }"></ng-container>
+    </div>
+  </div>
+
+  <ng-template #treeNode let-node let-depth="depth">
+    <div *ngIf="node.visible" [style.padding-left.px]="depth * 20">
+      <div class="tree-line" [class.clickable]="node.type === 'dir'" (click)="node.type === 'dir' && toggleFolder(node)">
+        <span *ngIf="node.type === 'dir'" class="tree-caret" [class.open]="node.open">&#9654;</span>
+        <span *ngIf="node.type === 'file'" class="tree-dot" [style.background]="node.color"></span>
+        <span [class.folder-name]="node.type === 'dir'" [style.color]="node.type === 'dir' ? node.color : 'var(--text-main)'">
+          {{ node.name }}
+        </span>
+        <span *ngIf="node.badge" class="tree-badge" [style.background]="node.color + '22'" [style.color]="node.color" [style.border-color]="node.color + '44'">
+          {{ node.badge }}
+        </span>
+        <span *ngIf="node.detail" class="tree-detail">— {{ node.detail }}</span>
+      </div>
+
+      <div *ngIf="node.type === 'dir' && node.open" class="tree-children">
+        <ng-container *ngFor="let child of node.children">
+          <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: child, depth: depth + 1 }"></ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
+
   <!-- REQUEST FLOW -->
   <div class="section">
     <div class="sec-title">Request Processing Flow</div>
