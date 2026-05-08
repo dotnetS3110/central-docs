@@ -411,49 +411,786 @@
   <div class="section">
     <div class="sec-title">Interactive Solution Structure</div>
 
-    <div class="tree-toolbar">
-      <button class="tbtn" [class.on]="activeTreeFilter === 'all'" (click)="expandTree('all')">Expand all</button>
-      <button class="tbtn" [class.on]="activeTreeFilter === 'collapse'" (click)="expandTree('collapse')">Collapse all</button>
-      <button class="tbtn" [class.on]="activeTreeFilter === 'product'" (click)="expandTree('product')">Show Product only</button>
-      <button class="tbtn" [class.on]="activeTreeFilter === 'order'" (click)="expandTree('order')">Show Order only</button>
-      <button class="tbtn" [class.on]="activeTreeFilter === 'user'" (click)="expandTree('user')">Show User only</button>
-    </div>
+    <div class="tree-wrap">
 
-    <div class="tree-legend">
-      <span class="leg"><span class="ldot" style="background:#534AB7"></span>Domain</span>
-      <span class="leg"><span class="ldot" style="background:#185FA5"></span>Application</span>
-      <span class="leg"><span class="ldot" style="background:#0F6E56"></span>Infrastructure</span>
-      <span class="leg"><span class="ldot" style="background:#993C1D"></span>API</span>
-      <span class="leg"><span class="ldot" style="background:#854F0B"></span>Tests</span>
-      <span class="leg"><span class="ldot" style="background:#5F5E5A"></span>Shared / config</span>
-    </div>
+      <!-- ══════════════════ DOMAIN ══════════════════ -->
+      <div class="layer-block">
+        <div class="layer-hdr" (click)="tL('dom')">
+          <div class="ldot ldot-dom"></div>
+          <span class="lname">ERP.Domain</span>
+          <span class="lbadge lbadge-dom">Core Business · No Dependencies</span>
+          <span class="larr" id="la-dom">▶</span>
+        </div>
+        <div class="lbody" id="lb-dom">
 
-    <div class="tree-container">
-      <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: treeData, depth: 0 }"></ng-container>
+          <!-- Entities -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('d-ent')">
+              <span>📁</span><span class="fname">Entities/</span><span class="farr" id="fa-d-ent">▶</span>
+            </div>
+            <div class="fbody" id="fb-d-ent">
+              <div class="subfolder-hdr" (click)="tS('de-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-de-prod">▶</span></div>
+              <div class="sfbody" id="sb-de-prod">
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">Product.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">ProductVariant.cs</span><span class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">ProductCategory.cs</span><span class="ftag ftag-entity">entity</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('de-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-de-ord">▶</span></div>
+              <div class="sfbody" id="sb-de-ord">
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">Order.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">OrderItem.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">OrderLineItem.cs</span><span class="ftag ftag-entity">entity</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('de-cust')"><span>📂</span><span
+                  class="fname fname-sub">Customer/</span><span class="sfarr" id="sa-de-cust">▶</span></div>
+              <div class="sfbody" id="sb-de-cust">
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">Customer.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">CustomerAddress.cs</span><span class="ftag ftag-entity">entity</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('de-inv')"><span>📂</span><span
+                  class="fname fname-sub">Inventory/</span><span class="sfarr" id="sa-de-inv">▶</span></div>
+              <div class="sfbody" id="sb-de-inv">
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">InventoryItem.cs</span><span class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">StockMovement.cs</span><span class="ftag ftag-entity">entity</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('de-invc')"><span>📂</span><span
+                  class="fname fname-sub">Invoice/</span><span class="sfarr" id="sa-de-invc">▶</span></div>
+              <div class="sfbody" id="sb-de-invc">
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">Invoice.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">InvoiceItem.cs</span><span class="ftag ftag-entity">entity</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('de-hr')"><span>📂</span><span
+                  class="fname fname-sub">HR/</span><span class="sfarr" id="sa-de-hr">▶</span></div>
+              <div class="sfbody" id="sb-de-hr">
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">Employee.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span
+                    class="ftext">Department.cs</span><span class="ftag ftag-entity">entity</span></div>
+                <div class="file-row d3"><span class="fdot fdot-dom"></span><span class="ftext">Payroll.cs</span><span
+                    class="ftag ftag-entity">entity</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('de-base')"><span>📂</span><span
+                  class="fname fname-sub">Common/</span><span class="sfarr" id="sa-de-base">▶</span></div>
+              <div class="sfbody" id="sb-de-base">
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">BaseEntity.cs</span><span
+                    class="fcomment">← Id, CreatedAt, UpdatedAt</span></div>
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">AuditableEntity.cs</span><span
+                    class="fcomment">← AddedBy, UpdatedBy, IsDelete</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interfaces -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('d-int')">
+              <span>📁</span><span class="fname">Interfaces/</span><span class="farr" id="fa-d-int">▶</span>
+            </div>
+            <div class="fbody" id="fb-d-int">
+              <div class="subfolder-hdr" (click)="tS('di-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-di-prod">▶</span></div>
+              <div class="sfbody" id="sb-di-prod">
+                <div class="file-row d3"><span class="fdot fdot-interface"></span><span
+                    class="ftext">IProductRepository.cs</span><span class="ftag ftag-interface">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('di-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-di-ord">▶</span></div>
+              <div class="sfbody" id="sb-di-ord">
+                <div class="file-row d3"><span class="fdot fdot-interface"></span><span
+                    class="ftext">IOrderRepository.cs</span><span class="ftag ftag-interface">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('di-cust')"><span>📂</span><span
+                  class="fname fname-sub">Customer/</span><span class="sfarr" id="sa-di-cust">▶</span></div>
+              <div class="sfbody" id="sb-di-cust">
+                <div class="file-row d3"><span class="fdot fdot-interface"></span><span
+                    class="ftext">ICustomerRepository.cs</span><span class="ftag ftag-interface">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('di-inv')"><span>📂</span><span
+                  class="fname fname-sub">Inventory/</span><span class="sfarr" id="sa-di-inv">▶</span></div>
+              <div class="sfbody" id="sb-di-inv">
+                <div class="file-row d3"><span class="fdot fdot-interface"></span><span
+                    class="ftext">IInventoryRepository.cs</span><span class="ftag ftag-interface">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('di-invc')"><span>📂</span><span
+                  class="fname fname-sub">Invoice/</span><span class="sfarr" id="sa-di-invc">▶</span></div>
+              <div class="sfbody" id="sb-di-invc">
+                <div class="file-row d3"><span class="fdot fdot-interface"></span><span
+                    class="ftext">IInvoiceRepository.cs</span><span class="ftag ftag-interface">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('di-hr')"><span>📂</span><span
+                  class="fname fname-sub">HR/</span><span class="sfarr" id="sa-di-hr">▶</span></div>
+              <div class="sfbody" id="sb-di-hr">
+                <div class="file-row d3"><span class="fdot fdot-interface"></span><span
+                    class="ftext">IEmployeeRepository.cs</span><span class="ftag ftag-interface">interface</span></div>
+              </div>
+              <div class="file-row file-row-indent file-row-mt-2">
+                <span class="fdot fdot-interface"></span><span class="ftext">IUnitOfWork.cs</span><span
+                  class="ftag ftag-interface">interface</span><span class="fcomment">←
+                  IUnitOfWork + IGenericRepository&lt;T&gt;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enums — CHANGED: one common file -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('d-enum')">
+              <span>📁</span><span class="fname">Enums/</span><span class="farr" id="fa-d-enum">▶</span>
+            </div>
+            <div class="fbody" id="fb-d-enum">
+              <div class="file-row"><span class="fdot fdot-enum"></span><span class="ftext">AppEnums.cs</span><span
+                  class="ftag ftag-common">common</span><span class="fcomment">← ONE file — all reusable
+                  enums</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">OrderStatus · PaymentStatus ·
+                  ProductStatus</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">InvoiceStatus · EmploymentType ·
+                  StockMovementType</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">DeviceType · UserRole ·
+                  NotificationStatus</span></div>
+            </div>
+          </div>
+
+          <div class="file-row d2 ftext-muted file-row-mt-4"><span class="fdot"></span><span
+              class="ftext">ERP.Domain.csproj</span><span class="fcomment">← NO project
+              references</span></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════ APPLICATION ══════════════════ -->
+      <div class="layer-block">
+        <div class="layer-hdr" (click)="tL('app')">
+          <div class="ldot ldot-app"></div>
+          <span class="lname">ERP.Application</span>
+          <span class="lbadge lbadge-app">Business Logic · Refs: Domain</span>
+          <span class="larr" id="la-app">▶</span>
+        </div>
+        <div class="lbody" id="lb-app">
+
+          <!-- Services -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('a-svc')">
+              <span>📁</span><span class="fname">Services/ <span class="lname-sub">(module-wise)</span></span><span
+                class="farr" id="fa-a-svc">▶</span>
+            </div>
+            <div class="fbody" id="fb-a-svc">
+              <div class="subfolder-hdr" (click)="tS('as-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-as-prod">▶</span></div>
+              <div class="sfbody" id="sb-as-prod">
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">ProductService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">IProductService.cs</span><span class="ftag ftag-service">interface</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">GetAllAsync · GetByIdAsync ·
+                    GetPaginatedListAsync</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">SaveOrUpdateAsync · DeactivateAsync</span>
+                </div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('as-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-as-ord">▶</span></div>
+              <div class="sfbody" id="sb-as-ord">
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">OrderService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">IOrderService.cs</span><span class="ftag ftag-service">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('as-cust')"><span>📂</span><span
+                  class="fname fname-sub">Customer/</span><span class="sfarr" id="sa-as-cust">▶</span></div>
+              <div class="sfbody" id="sb-as-cust">
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">CustomerService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">ICustomerService.cs</span><span class="ftag ftag-service">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('as-inv')"><span>📂</span><span
+                  class="fname fname-sub">Inventory/</span><span class="sfarr" id="sa-as-inv">▶</span></div>
+              <div class="sfbody" id="sb-as-inv">
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">InventoryService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">IInventoryService.cs</span><span class="ftag ftag-service">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('as-invc')"><span>📂</span><span
+                  class="fname fname-sub">Invoice/</span><span class="sfarr" id="sa-as-invc">▶</span></div>
+              <div class="sfbody" id="sb-as-invc">
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">InvoiceService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">IInvoiceService.cs</span><span class="ftag ftag-service">interface</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('as-hr')"><span>📂</span><span
+                  class="fname fname-sub">HR/</span><span class="sfarr" id="sa-as-hr">▶</span></div>
+              <div class="sfbody" id="sb-as-hr">
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">EmployeeService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">IEmployeeService.cs</span><span class="ftag ftag-service">interface</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">PayrollService.cs</span><span class="ftag ftag-service">service</span></div>
+                <div class="file-row d3"><span class="fdot fdot-app"></span><span
+                    class="ftext">IPayrollService.cs</span><span class="ftag ftag-service">interface</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DTOs -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('a-dto')">
+              <span>📁</span><span class="fname">DTOs/ <span class="lname-sub">(module-wise)</span></span><span
+                class="farr" id="fa-a-dto">▶</span>
+            </div>
+            <div class="fbody" id="fb-a-dto">
+              <div class="subfolder-hdr" (click)="tS('ad-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-ad-prod">▶</span></div>
+              <div class="sfbody" id="sb-ad-prod">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">ProductRequestDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">ProductResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">ProductListDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ad-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-ad-ord">▶</span></div>
+              <div class="sfbody" id="sb-ad-ord">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">OrderRequestDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">OrderResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">OrderListDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ad-cust')"><span>📂</span><span
+                  class="fname fname-sub">Customer/</span><span class="sfarr" id="sa-ad-cust">▶</span></div>
+              <div class="sfbody" id="sb-ad-cust">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">CustomerRequestDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">CustomerResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ad-inv')"><span>📂</span><span
+                  class="fname fname-sub">Inventory/</span><span class="sfarr" id="sa-ad-inv">▶</span></div>
+              <div class="sfbody" id="sb-ad-inv">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">InventoryRequestDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">InventoryResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ad-invc')"><span>📂</span><span
+                  class="fname fname-sub">Invoice/</span><span class="sfarr" id="sa-ad-invc">▶</span></div>
+              <div class="sfbody" id="sb-ad-invc">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">InvoiceRequestDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">InvoiceResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ad-hr')"><span>📂</span><span
+                  class="fname fname-sub">HR/</span><span class="sfarr" id="sa-ad-hr">▶</span></div>
+              <div class="sfbody" id="sb-ad-hr">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">EmployeeRequestDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">EmployeeResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">PayrollDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ad-common')"><span>📂</span><span
+                  class="fname fname-sub">Common/</span><span class="sfarr" id="sa-ad-common">▶</span></div>
+              <div class="sfbody" id="sb-ad-common">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">ApiResponseDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">PaginationDto.cs</span><span class="ftag ftag-dto">dto</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Validators — CHANGED: one common file + module-wise -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('a-val')">
+              <span>📁</span><span class="fname">Validators/</span><span class="farr" id="fa-a-val">▶</span>
+            </div>
+            <div class="fbody" id="fb-a-val">
+              <!-- Common reusable file -->
+              <div class="file-row file-row-indent file-row-divider">
+                <span class="fdot fdot-tst"></span>
+                <span class="ftext">CommonValidators.cs</span>
+                <span class="ftag ftag-common">common</span>
+                <span class="fcomment">← ONE file — reusable rules for all modules</span>
+              </div>
+              <div class="file-row d4 file-row-mb-4"><span class="fdot"></span><span
+                  class="ftext ftext-muted">NotEmptyString · MaxLength · ValidEmail ·
+                  ValidPhone · PositiveNumber</span></div>
+              <!-- Module-wise -->
+              <div class="subfolder-hdr" (click)="tS('av-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-av-prod">▶</span></div>
+              <div class="sfbody" id="sb-av-prod">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">ProductValidator.cs</span><span class="ftag ftag-validator">validator</span><span
+                    class="fcomment">← uses
+                    CommonValidators</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('av-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-av-ord">▶</span></div>
+              <div class="sfbody" id="sb-av-ord">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">OrderValidator.cs</span><span class="ftag ftag-validator">validator</span><span
+                    class="fcomment">← uses
+                    CommonValidators</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('av-cust')"><span>📂</span><span
+                  class="fname fname-sub">Customer/</span><span class="sfarr" id="sa-av-cust">▶</span></div>
+              <div class="sfbody" id="sb-av-cust">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">CustomerValidator.cs</span><span class="ftag ftag-validator">validator</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('av-inv')"><span>📂</span><span
+                  class="fname fname-sub">Inventory/</span><span class="sfarr" id="sa-av-inv">▶</span></div>
+              <div class="sfbody" id="sb-av-inv">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">InventoryValidator.cs</span><span class="ftag ftag-validator">validator</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('av-invc')"><span>📂</span><span
+                  class="fname fname-sub">Invoice/</span><span class="sfarr" id="sa-av-invc">▶</span></div>
+              <div class="sfbody" id="sb-av-invc">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">InvoiceValidator.cs</span><span class="ftag ftag-validator">validator</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('av-hr')"><span>📂</span><span
+                  class="fname fname-sub">HR/</span><span class="sfarr" id="sa-av-hr">▶</span></div>
+              <div class="sfbody" id="sb-av-hr">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">EmployeeValidator.cs</span><span class="ftag ftag-validator">validator</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mappings — CHANGED: one common file -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('a-map')">
+              <span>📁</span><span class="fname">Mappings/</span><span class="farr" id="fa-a-map">▶</span>
+            </div>
+            <div class="fbody" id="fb-a-map">
+              <div class="file-row"><span class="fdot fdot-inf"></span><span
+                  class="ftext">AutoMapperProfile.cs</span><span class="ftag ftag-common">common</span><span
+                  class="fcomment">← ONE file — all module
+                  mappings</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">Product: Entity ↔ RequestDto ↔
+                  ResponseDto</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">Order: Entity ↔ RequestDto ↔
+                  ResponseDto</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">Customer · Inventory · Invoice · Employee ·
+                  Payroll</span></div>
+            </div>
+          </div>
+
+          <!-- Behaviors -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('a-beh')">
+              <span>📁</span><span class="fname">Behaviors/</span><span class="farr" id="fa-a-beh">▶</span>
+            </div>
+            <div class="fbody" id="fb-a-beh">
+              <div class="file-row"><span class="fdot"></span><span class="ftext">LoggingBehavior.cs</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">ValidationBehavior.cs</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">PerformanceBehavior.cs</span></div>
+            </div>
+          </div>
+
+          <div class="file-row d2 ftext-muted file-row-mt-4"><span class="fdot"></span><span
+              class="ftext">ERP.Application.csproj</span><span class="fcomment">← Refs:
+              ERP.Domain only</span></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════ INFRASTRUCTURE ══════════════════ -->
+      <div class="layer-block">
+        <div class="layer-hdr" (click)="tL('inf')">
+          <div class="ldot ldot-inf"></div>
+          <span class="lname">ERP.Infrastructure</span>
+          <span class="lbadge lbadge-inf">Data Access · Refs: Domain</span>
+          <span class="larr" id="la-inf">▶</span>
+        </div>
+        <div class="lbody" id="lb-inf">
+
+          <!-- Persistence -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('i-data')">
+              <span>📁</span><span class="fname">Persistence/</span><span class="farr" id="fa-i-data">▶</span>
+            </div>
+            <div class="fbody" id="fb-i-data">
+              <div class="file-row"><span class="fdot fdot-inf"></span><span
+                  class="ftext">ApplicationDbContext.cs</span><span class="ftag ftag-dbcontext">dbcontext</span><span
+                  class="fcomment">←
+                  DbSet&lt;Product&gt;,
+                  DbSet&lt;Order&gt;…</span></div>
+              <div class="subfolder-hdr" (click)="tS('ip-cfg')"><span>📂</span><span
+                  class="fname fname-sub">Configurations/</span><span class="sfarr" id="sa-ip-cfg">▶</span></div>
+              <div class="sfbody" id="sb-ip-cfg">
+                <div class="file-row d3"><span class="fdot"></span><span
+                    class="ftext">ProductConfiguration.cs</span><span class="fcomment">← EF Fluent API</span></div>
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">OrderConfiguration.cs</span>
+                </div>
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">CustomerConfiguration.cs</span>
+                </div>
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">InventoryConfiguration.cs</span>
+                </div>
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">InvoiceConfiguration.cs</span>
+                </div>
+                <div class="file-row d3"><span class="fdot"></span><span class="ftext">EmployeeConfiguration.cs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Repositories -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('i-rep')">
+              <span>📁</span><span class="fname">Repositories/</span><span class="farr" id="fa-i-rep">▶</span>
+            </div>
+            <div class="fbody" id="fb-i-rep">
+              <div class="subfolder-hdr" (click)="tS('ir-gen')"><span>📂</span><span
+                  class="fname fname-sub">Generic/</span><span class="sfarr" id="sa-ir-gen">▶</span></div>
+              <div class="sfbody" id="sb-ir-gen">
+                <div class="file-row d3"><span class="fdot fdot-inf"></span><span
+                    class="ftext">GenericRepository.cs</span><span class="ftag ftag-mapping">repository</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">GetByIdAsync · GetAllAsync · FindAsync ·
+                    AddAsync · UpdateAsync · DeleteAsync</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ir-uow')"><span>📂</span><span
+                  class="fname fname-sub">UnitOfWork/</span><span class="sfarr" id="sa-ir-uow">▶</span></div>
+              <div class="sfbody" id="sb-ir-uow">
+                <div class="file-row d3"><span class="fdot fdot-inf"></span><span
+                    class="ftext">UnitOfWork.cs</span><span class="ftag ftag-uow">uow</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">Repository&lt;T&gt;() ·
+                    BeginTransactionAsync · CommitAsync · RollbackAsync</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Identity — NEW -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('i-ident')">
+              <span>📁</span><span class="fname">Identity/</span><span class="farr" id="fa-i-ident">▶</span>
+            </div>
+            <div class="fbody" id="fb-i-ident">
+              <div class="file-row"><span class="fdot fdot-inf"></span><span class="ftext">JwtService.cs</span><span
+                  class="ftag ftag-dbcontext">service</span><span class="fcomment">← GenerateToken ·
+                  ValidateToken · RefreshToken</span></div>
+              <div class="file-row"><span class="fdot fdot-inf"></span><span class="ftext">IJwtService.cs</span><span
+                  class="ftag ftag-dbcontext">interface</span></div>
+              <div class="file-row"><span class="fdot fdot-inf"></span><span class="ftext">AuthService.cs</span><span
+                  class="ftag ftag-dbcontext">service</span><span class="fcomment">← Login · Logout ·
+                  Register</span></div>
+              <div class="file-row"><span class="fdot fdot-inf"></span><span class="ftext">IAuthService.cs</span><span
+                  class="ftag ftag-dbcontext">interface</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">EncryptionService.cs</span><span
+                  class="fcomment">← AES encrypt/decrypt helpers</span></div>
+            </div>
+          </div>
+
+          <!-- ExternalServices -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('i-ext')">
+              <span>📁</span><span class="fname">ExternalServices/</span><span class="farr" id="fa-i-ext">▶</span>
+            </div>
+            <div class="fbody" id="fb-i-ext">
+              <div class="file-row"><span class="fdot"></span><span class="ftext">EmailService.cs</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">SmsService.cs</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">FileStorageService.cs</span></div>
+            </div>
+          </div>
+
+          <div class="file-row d2 ftext-muted file-row-mt-4"><span class="fdot"></span><span
+              class="ftext">ERP.Infrastructure.csproj</span><span class="fcomment">← Refs:
+              ERP.Domain only</span></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════ API ══════════════════ -->
+      <div class="layer-block">
+        <div class="layer-hdr" (click)="tL('api')">
+          <div class="ldot ldot-api"></div>
+          <span class="lname">ERP.API <span class="lname-sub">(Main Project)</span></span>
+          <span class="lbadge lbadge-api">HTTP Entry · Refs: App + Infra</span>
+          <span class="larr" id="la-api">▶</span>
+        </div>
+        <div class="lbody" id="lb-api">
+
+          <!-- Controllers -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('api-ctrl')">
+              <span>📁</span><span class="fname">Controllers/ <span class="lname-sub">(one file per
+                  module)</span></span><span class="farr" id="fa-api-ctrl">▶</span>
+            </div>
+            <div class="fbody" id="fb-api-ctrl">
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">ProductController.cs</span><span class="ftag ftag-controller">controller</span></div>
+              <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">[POST] List [GET] GetAll [GET] GetById/:id
+                  [POST] Save [DELETE] Delete/:id</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">OrderController.cs</span><span class="ftag ftag-controller">controller</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">CustomerController.cs</span><span class="ftag ftag-controller">controller</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">InventoryController.cs</span><span class="ftag ftag-controller">controller</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">InvoiceController.cs</span><span class="ftag ftag-controller">controller</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">EmployeeController.cs</span><span class="ftag ftag-controller">controller</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span class="ftext">AuthController.cs</span><span
+                  class="ftag ftag-controller">controller</span></div>
+            </div>
+          </div>
+
+          <!-- Middlewares -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('api-mid')">
+              <span>📁</span><span class="fname">Middlewares/</span><span class="farr" id="fa-api-mid">▶</span>
+            </div>
+            <div class="fbody" id="fb-api-mid">
+              <div class="file-row"><span class="fdot"></span><span class="ftext">ExceptionMiddleware.cs</span><span
+                  class="fcomment">← global error handling</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">AuthorizationMiddleware.cs</span><span
+                  class="fcomment">← JWT validation</span></div>
+              <div class="file-row"><span class="fdot"></span><span
+                  class="ftext">RequestLoggingMiddleware.cs</span><span class="fcomment">← audit trail</span></div>
+            </div>
+          </div>
+
+          <!-- Extensions — NEW -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('api-ext')">
+              <span>📁</span><span class="fname">Extensions/</span><span class="farr" id="fa-api-ext">▶</span>
+            </div>
+            <div class="fbody" id="fb-api-ext">
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">ServiceCollectionExtensions.cs</span><span class="fcomment">← AddScoped services,
+                  AddRepositories</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">SwaggerExtensions.cs</span><span class="fcomment">← AddSwaggerGen, UseSwaggerUI</span>
+              </div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span class="ftext">JwtExtensions.cs</span><span
+                  class="fcomment">← AddAuthentication, AddJwtBearer
+                  config</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span class="ftext">CorsExtensions.cs</span><span
+                  class="fcomment">← AddCors policy config</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">ApplicationBuilderExtensions.cs</span><span class="fcomment">← UseMiddlewares,
+                  UseRouting</span></div>
+            </div>
+          </div>
+
+          <!-- Filters — NEW -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('api-flt')">
+              <span>📁</span><span class="fname">Filters/</span><span class="farr" id="fa-api-flt">▶</span>
+            </div>
+            <div class="fbody" id="fb-api-flt">
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">ValidationFilter.cs</span><span class="fcomment">← auto ModelState validation on every
+                  action</span></div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">AuthorizationFilter.cs</span><span class="fcomment">← role-based access control</span>
+              </div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span class="ftext">AuditLogFilter.cs</span><span
+                  class="fcomment">← log who called what and when</span>
+              </div>
+              <div class="file-row"><span class="fdot fdot-api"></span><span
+                  class="ftext">ExceptionFilter.cs</span><span class="fcomment">← IExceptionFilter for unhandled
+                  errors</span></div>
+            </div>
+          </div>
+
+          <!-- Database -->
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('api-db')">
+              <span>📁</span><span class="fname">Database/ <span class="lname-sub">(SQL scripts per
+                  module)</span></span><span class="farr" id="fa-api-db">▶</span>
+            </div>
+            <div class="fbody" id="fb-api-db">
+              <div class="subfolder-hdr" (click)="tS('adb-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-adb-prod">▶</span></div>
+              <div class="sfbody" id="sb-adb-prod">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">uspGetProductListPaginated.sql</span><span class="ftag ftag-sql">sql</span></div>
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">SP_GetProductById.sql</span><span class="ftag ftag-sql">sql</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('adb-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-adb-ord">▶</span></div>
+              <div class="sfbody" id="sb-adb-ord">
+                <div class="file-row d3"><span class="fdot fdot-enum"></span><span
+                    class="ftext">uspGetOrderListPaginated.sql</span><span class="ftag ftag-sql">sql</span></div>
+              </div>
+              <div class="divider-row">+ other modules follow same pattern</div>
+            </div>
+          </div>
+
+          <div class="file-row d2"><span class="fdot fdot-api"></span><span class="ftext">Program.cs</span><span
+              class="fcomment">← uses Extensions to register all services</span>
+          </div>
+          <div class="file-row d2 ftext-muted"><span class="fdot"></span><span
+              class="ftext">appsettings.json</span><span class="fcomment">←
+              ConnectionStrings, JWT, Logging</span></div>
+          <div class="file-row d2 ftext-muted"><span class="fdot"></span><span class="ftext">ERP.API.csproj</span><span
+              class="fcomment">← Refs:
+              ERP.Application + ERP.Infrastructure</span></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════ TESTS ══════════════════ -->
+      <div class="layer-block">
+        <div class="layer-hdr" (click)="tL('tst')">
+          <div class="ldot ldot-tst"></div>
+          <span class="lname">ERP.Tests</span>
+          <span class="lbadge lbadge-tst">Quality · Refs: App + Infra + Domain</span>
+          <span class="larr" id="la-tst">▶</span>
+        </div>
+        <div class="lbody" id="lb-tst">
+
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('t-unit')">
+              <span>📁</span><span class="fname">UnitTests/ <span class="lname-sub">(no DB · no HTTP · pure
+                  logic)</span></span><span class="farr" id="fa-t-unit">▶</span>
+            </div>
+            <div class="fbody" id="fb-t-unit">
+              <div class="subfolder-hdr" (click)="tS('tu-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-tu-prod">▶</span></div>
+              <div class="sfbody" id="sb-tu-prod">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">ProductServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">GetAllAsync_Returns_AllProducts()</span>
+                </div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">SaveOrUpdateAsync_Creates_NewProduct()</span>
+                </div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">DeactivateAsync_SoftDeletes_Product()</span>
+                </div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">ProductValidatorTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">Validate_EmptyName_ReturnsError()</span>
+                </div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('tu-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-tu-ord">▶</span></div>
+              <div class="sfbody" id="sb-tu-ord">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">OrderServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">OrderValidatorTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('tu-cust')"><span>📂</span><span
+                  class="fname fname-sub">Customer/</span><span class="sfarr" id="sa-tu-cust">▶</span></div>
+              <div class="sfbody" id="sb-tu-cust">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">CustomerServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">CustomerValidatorTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('tu-inv')"><span>📂</span><span
+                  class="fname fname-sub">Inventory/</span><span class="sfarr" id="sa-tu-inv">▶</span></div>
+              <div class="sfbody" id="sb-tu-inv">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">InventoryServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('tu-invc')"><span>📂</span><span
+                  class="fname fname-sub">Invoice/</span><span class="sfarr" id="sa-tu-invc">▶</span></div>
+              <div class="sfbody" id="sb-tu-invc">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">InvoiceServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('tu-hr')"><span>📂</span><span
+                  class="fname fname-sub">HR/</span><span class="sfarr" id="sa-tu-hr">▶</span></div>
+              <div class="sfbody" id="sb-tu-hr">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">EmployeeServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">PayrollServiceTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">EmployeeValidatorTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('t-int')">
+              <span>📁</span><span class="fname">IntegrationTests/ <span class="lname-sub">(DB + HTTP
+                  end-to-end)</span></span><span class="farr" id="fa-t-int">▶</span>
+            </div>
+            <div class="fbody" id="fb-t-int">
+              <div class="subfolder-hdr" (click)="tS('ti-prod')"><span>📂</span><span
+                  class="fname fname-sub">Product/</span><span class="sfarr" id="sa-ti-prod">▶</span></div>
+              <div class="sfbody" id="sb-ti-prod">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">ProductControllerTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">POST_Save_Returns200_OnValidDto()</span>
+                </div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">GET_GetAll_ReturnsProductList()</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">ProductRepositoryTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d4"><span class="fdot"></span><span class="ftext ftext-muted">AddAsync_PersistsProduct_ToDatabase()</span>
+                </div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ti-ord')"><span>📂</span><span
+                  class="fname fname-sub">Order/</span><span class="sfarr" id="sa-ti-ord">▶</span></div>
+              <div class="sfbody" id="sb-ti-ord">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">OrderControllerTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">OrderRepositoryTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+              <div class="subfolder-hdr" (click)="tS('ti-mid')"><span>📂</span><span
+                  class="fname fname-sub">Middleware/</span><span class="sfarr" id="sa-ti-mid">▶</span></div>
+              <div class="sfbody" id="sb-ti-mid">
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">ExceptionMiddlewareTests.cs</span><span class="ftag ftag-test">test</span></div>
+                <div class="file-row d3"><span class="fdot fdot-tst"></span><span
+                    class="ftext">AuthorizationMiddlewareTests.cs</span><span class="ftag ftag-test">test</span></div>
+              </div>
+              <div class="divider-row">+ Customer, Inventory, Invoice, HR follow same pattern</div>
+            </div>
+          </div>
+
+          <div class="folder-block">
+            <div class="folder-hdr" (click)="tF('t-hlp')">
+              <span>📁</span><span class="fname">TestHelpers/</span><span class="farr" id="fa-t-hlp">▶</span>
+            </div>
+            <div class="fbody" id="fb-t-hlp">
+              <div class="file-row"><span class="fdot"></span><span class="ftext">MockUnitOfWork.cs</span><span
+                  class="fcomment">← mock IUnitOfWork</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">MockGenericRepository.cs</span><span
+                  class="fcomment">← mock IGenericRepository&lt;T&gt;</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">ProductFaker.cs</span><span
+                  class="fcomment">← Bogus fake data</span></div>
+              <div class="file-row"><span class="fdot"></span><span class="ftext">OrderFaker.cs</span><span
+                  class="fcomment">← Bogus fake data</span></div>
+              <div class="file-row"><span class="fdot"></span><span
+                  class="ftext">InMemoryDbContextFactory.cs</span><span class="fcomment">← EF Core InMemory DB</span>
+              </div>
+              <div class="file-row"><span class="fdot"></span><span
+                  class="ftext">TestWebApplicationFactory.cs</span><span class="fcomment">← WebApplicationFactory for
+                  HTTP tests</span></div>
+            </div>
+          </div>
+
+          <div class="file-row d2" style="margin-top:4px"><span class="fdot"></span><span class="ftext"
+              style="color:var(--color-text-tertiary)">ERP.Tests.csproj</span><span class="fcomment">← Refs:
+              ERP.Application + ERP.Infrastructure + ERP.Domain</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <ng-template #treeNode let-node let-depth="depth">
-    <div *ngIf="node.visible" [style.padding-left.px]="depth * 20">
-      <div class="tree-line" [class.clickable]="node.type === 'dir'" (click)="node.type === 'dir' && toggleFolder(node)">
-        <span *ngIf="node.type === 'dir'" class="tree-caret" [class.open]="node.open">&#9654;</span>
-        <span *ngIf="node.type === 'file'" class="tree-dot" [style.background]="node.color"></span>
-        <span [class.folder-name]="node.type === 'dir'" [style.color]="node.type === 'dir' ? node.color : 'var(--text-main)'">
-          {{ node.name }}
-        </span>
-        <span *ngIf="node.badge" class="tree-badge" [style.background]="node.color + '22'" [style.color]="node.color" [style.border-color]="node.color + '44'">
-          {{ node.badge }}
-        </span>
-        <span *ngIf="node.detail" class="tree-detail">— {{ node.detail }}</span>
-      </div>
-
-      <div *ngIf="node.type === 'dir' && node.open" class="tree-children">
-        <ng-container *ngFor="let child of node.children">
-          <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: child, depth: depth + 1 }"></ng-container>
-        </ng-container>
-      </div>
-    </div>
-  </ng-template>
 
   <!-- REQUEST FLOW -->
   <div class="section">
