@@ -9,4 +9,11 @@ import { CopyButton } from '../../components/copy-button/copy-button';
   templateUrl: './gitlab-setup.html',
   styleUrl: '../../../assets/scss/gitlab-setup/gitlab-setup.scss',
 })
-export class GitlabSetup {}
+export class GitlabSetup {
+  activeTab: string = 'problem';
+
+  setTab(tab: string): void {
+    this.activeTab = tab;
+  }
+}
+
