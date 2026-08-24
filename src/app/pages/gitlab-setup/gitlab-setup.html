@@ -5,83 +5,388 @@
     <p class="intro">Quick guide to pushing projects to GitLab effortlessly using SSH security.</p>
   </div>
 
-    <div class="content-grid fade-in">
-      <section class="step-card">
-        <div class="step-icon">01</div>
-        <h2>Navigate to Folder</h2>
-        <div class="code-container">
-          <pre><code>cd existing_folder</code></pre>
-          <app-copy-button text="cd existing_folder"></app-copy-button>
-        </div>
-      </section>
+  <div class="content-grid fade-in">
+    <section class="step-card">
+      <div class="step-icon">01</div>
+      <h2>Navigate to Folder</h2>
+      <div class="code-container">
+        <pre><code>cd existing_folder</code></pre>
+        <app-copy-button text="cd existing_folder"></app-copy-button>
+      </div>
+    </section>
 
-      <section class="step-card">
-        <div class="step-icon">02</div>
-        <h2>Initialize Git</h2>
-        <div class="code-container">
-          <pre><code>git init --initial-branch=main --object-format=sha1</code></pre>
-          <app-copy-button text="git init --initial-branch=main --object-format=sha1"></app-copy-button>
-        </div>
-      </section>
+    <section class="step-card">
+      <div class="step-icon">02</div>
+      <h2>Initialize Git</h2>
+      <div class="code-container">
+        <pre><code>git init --initial-branch=main --object-format=sha1</code></pre>
+        <app-copy-button text="git init --initial-branch=main --object-format=sha1"></app-copy-button>
+      </div>
+    </section>
 
-      <section class="step-card">
-        <div class="step-icon">03</div>
-        <h2>Add Remote</h2>
-        <div class="code-container">
-          <pre><code>git remote add origin git&#64;ws-srv-git.in.webmyne.com:template/modernize-angular-admin-panel.git</code></pre>
-          <app-copy-button text="git remote add origin git&#64;ws-srv-git.in.webmyne.com:template/modernize-angular-admin-panel.git"></app-copy-button>
-        </div>
-      </section>
+    <section class="step-card">
+      <div class="step-icon">03</div>
+      <h2>Add Remote</h2>
+      <div class="code-container">
+        <pre><code>git remote add origin git&#64;ws-srv-git.in.webmyne.com:template/modernize-angular-admin-panel.git</code></pre>
+        <app-copy-button
+          text="git remote add origin git&#64;ws-srv-git.in.webmyne.com:template/modernize-angular-admin-panel.git"></app-copy-button>
+      </div>
+    </section>
 
-      <section class="step-card highlight">
-        <div class="step-icon">04</div>
-        <h2>Commit & Push</h2>
-        <div class="code-container">
-          <pre><code>git add .
+    <section class="step-card highlight">
+      <div class="step-icon">04</div>
+      <h2>Commit & Push</h2>
+      <div class="code-container">
+        <pre><code>git add .
 git commit -m "Initial commit"
 git push --set-upstream origin main</code></pre>
-          <app-copy-button text='git add .
+        <app-copy-button text='git add .
 git commit -m "Initial commit"
 git push --set-upstream origin main'></app-copy-button>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="full-width ssh-section">
-        <h2><span class="icon">🔐</span> SSH Security Setup</h2>
-        <p>Ensure your secure connection by configuring SSH keys.</p>
-        <div class="code-block-wrapper">
-          <div class="code-container">
-            <pre><code>ssh-keygen -t ed25519 -C "your_email&#64;example.com"
-ssh-add ~/.ssh/id_ed25519</code></pre>
-            <app-copy-button text='ssh-keygen -t ed25519 -C "your_email@example.com"
-ssh-add ~/.ssh/id_ed25519'></app-copy-button>
-          </div>
-        </div>
-        
-        <p class="secondary-info">Copy your public key and add it to GitLab Settings:</p>
+    <section class="full-width ssh-section">
+      <h2><span class="icon">🔐</span> SSH Security Setup</h2>
+      <p>Ensure your secure connection by configuring SSH keys.</p>
+      <div class="code-block-wrapper">
         <div class="code-container">
-          <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
-          <app-copy-button text="cat ~/.ssh/id_ed25519.pub"></app-copy-button>
+          <pre><code>ssh-keygen -t ed25519 -C "your_email&#64;example.com"
+ssh-add ~/.ssh/id_ed25519</code></pre>
+          <app-copy-button text='ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-add ~/.ssh/id_ed25519'></app-copy-button>
         </div>
+      </div>
 
-        <div class="test-connection success">
-          <span class="icon">🧪</span>
-          <div class="test-msg">
-            <span>Test connection: <code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></span>
-            <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
+      <p class="secondary-info">Copy your public key and add it to GitLab Settings:</p>
+      <div class="code-container">
+        <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
+        <app-copy-button text="cat ~/.ssh/id_ed25519.pub"></app-copy-button>
+      </div>
+
+      <div class="test-connection success">
+        <span class="icon">🧪</span>
+        <div class="test-msg">
+          <span>Test connection: <code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></span>
+          <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
+        </div>
+      </div>
+
+      <div class="note-box warning">
+        <span class="icon">⚠️</span>
+        <p><strong>Note:</strong> For custom keys, configure <code>~/.ssh/config</code>.</p>
+      </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section class="full-width troubleshooting-section">
+      <div class="troubleshooting-header">
+        <h2><span class="icon">🔍</span> Host Key Mismatch Troubleshooting</h2>
+        <p class="section-intro">Detailed troubleshooting guide for when Visual Studio or Git reports host identification changes or mismatches.</p>
+      </div>
+
+      <!-- Tab Controls -->
+      <div class="tabs-container">
+        <button class="tab-btn" [class.active]="activeTab === 'problem'" (click)="setTab('problem')">
+          <span class="tab-icon">⚠️</span> 1. The Issue
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'investigation'" (click)="setTab('investigation')">
+          <span class="tab-icon">🕵️</span> 2. Diagnosis
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'solution'" (click)="setTab('solution')">
+          <span class="tab-icon">💡</span> 3. The Solution
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'takeaways'" (click)="setTab('takeaways')">
+          <span class="tab-icon">✅</span> 4. Quick Fix & Summary
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content-wrapper">
+        <!-- Tab 1: The Problem -->
+        <div *ngIf="activeTab === 'problem'" class="tab-panel fade-in">
+          <div class="card-pair">
+            <!-- Issue Card -->
+            <div class="sub-card error-card">
+              <h3>1. The Issue</h3>
+              <p>While performing <strong>Git Fetch/Pull from Visual Studio</strong>, the following error occurred:</p>
+              <div class="error-console">
+                <pre><code>WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+
+Offending ECDSA key in /c/Users/vansh/.ssh/known_hosts:4
+Host key for ws-srv-git.in.webmyne.com has changed and you have requested strict checking.
+Host key verification failed.
+
+fatal: Could not read from remote repository.</code></pre>
+              </div>
+              <p class="card-caption">Note: Git fetch was failing even though SSH authentication itself was working.</p>
+            </div>
+
+            <!-- Repo Info Card -->
+            <div class="sub-card info-card">
+              <h3>2. Repository Information</h3>
+              <div class="meta-list">
+                <div class="meta-item">
+                  <span class="meta-label">Local Repository:</span>
+                  <code>D:\Vansh\Projects\CGD\CharotalGAS\Charotar_GAS</code>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Git Remote:</span>
+                  <code>origin  git&#64;ws-srv-git.in.webmyne.com:city-gas-distribution-cgd/charotar_gas.git</code>
+                </div>
+              </div>
+              <p class="secondary-info">The remote repository URL is correct and valid.</p>
+            </div>
           </div>
         </div>
 
-        <div class="note-box warning">
-          <span class="icon">⚠️</span>
-          <p><strong>Note:</strong> For custom keys, configure <code>~/.ssh/config</code>.</p>
-        </div>
-      </section>
-    </div>
+        <!-- Tab 2: Diagnosis -->
+        <div *ngIf="activeTab === 'investigation'" class="tab-panel fade-in">
+          <div class="trouble-steps">
+            <!-- Step 3: Initial Diagnosis -->
+            <div class="trouble-step">
+              <span class="step-num">A</span>
+              <div class="step-detail">
+                <h4>Initial Connection Test</h4>
+                <p>First, test if GitLab SSH authentication works directly:</p>
+                <div class="code-container">
+                  <pre><code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></pre>
+                  <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
+                </div>
+                <p class="success-text">Expected Response: <code>Welcome to GitLab, &#64;vansh!</code></p>
+                <p class="insight">
+                  This confirms that SSH authentication is working, the SSH key is valid, and GitLab permissions are correct.
+                  The problem is strictly an <strong>SSH host-key verification</strong> issue.
+                </p>
+              </div>
+            </div>
 
-    <div class="completion-footer fade-in">
-      <div class="check-icon">✓</div>
-      <h2>Successfully Setup!</h2>
-      <p>Your repository is now connected and ready for deployment.</p>
-    </div>
+            <!-- Step 4: Old Host Key -->
+            <div class="trouble-step">
+              <span class="step-num">B</span>
+              <div class="step-detail">
+                <h4>Stale Host Key</h4>
+                <p>SSH reported: <code>Offending ECDSA key in /c/Users/vansh/.ssh/known_hosts:4</code></p>
+                <p>This means your local <code>known_hosts</code> file contains an old SSH host key for <code>ws-srv-git.in.webmyne.com</code>. This usually happens when the Git server is rebuilt, migrated, has keys regenerated, or IP/DNS settings change.</p>
+                <div class="note-box warning">
+                  <span class="icon">⚠️</span>
+                  <p>Always verify key changes with your administrator before accepting a new key to prevent man-in-the-middle attacks.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6: Different SSH Connections -->
+            <div class="trouble-step">
+              <span class="step-num">C</span>
+              <div class="step-detail">
+                <h4>Key Finding: Different SSH Clients</h4>
+                <p>Troubleshooting revealed that PowerShell and Git resolved hostnames to different IP addresses and keys:</p>
+                
+                <div class="comparison-grid">
+                  <div class="comp-box">
+                    <h5>Normal PowerShell SSH</h5>
+                    <span class="comp-arrow">↓</span>
+                    <p>ws-srv-git.in.webmyne.com</p>
+                    <span class="comp-arrow">↓</span>
+                    <p class="highlight-ip">192.168.1.231</p>
+                    <span class="comp-arrow">↓</span>
+                    <code class="fingerprint">ED25519 SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA</code>
+                  </div>
+                  <div class="comp-box vs-box">
+                    <h5>Git Fetch SSH Process</h5>
+                    <span class="comp-arrow">↓</span>
+                    <p>ws-srv-git.in.webmyne.com</p>
+                    <span class="comp-arrow">↓</span>
+                    <p class="highlight-ip">192.168.1.254</p>
+                    <span class="comp-arrow">↓</span>
+                    <code class="fingerprint">ED25519 SHA256:eaJLX1fgTmjh9N+GcTkNNm/TK/QM1LW1UD9bsy235tk</code>
+                  </div>
+                </div>
+                <p class="insight mt-1">This mismatch indicates Git and standard PowerShell SSH were connecting to different targets/gateways.</p>
+              </div>
+            </div>
+
+            <!-- Step 7: SSH Client Check -->
+            <div class="trouble-step">
+              <span class="step-num">D</span>
+              <div class="step-detail">
+                <h4>Investigating SSH Executable Differences</h4>
+                <p>Checking the environment paths:</p>
+                <div class="code-container">
+                  <pre><code>where.exe ssh</code></pre>
+                  <app-copy-button text="where.exe ssh"></app-copy-button>
+                </div>
+                <p>Response: <code>C:\Windows\System32\OpenSSH\ssh.exe</code></p>
+                
+                <p class="mt-1">Checking Git's configured SSH command:</p>
+                <div class="code-container">
+                  <pre><code>git config --show-origin --get core.sshCommand</code></pre>
+                  <app-copy-button text="git config --show-origin --get core.sshCommand"></app-copy-button>
+                </div>
+                <p>Response: <em>None (empty)</em></p>
+                <p class="insight">
+                  By default, Git uses its own built-in Git-for-Windows SSH environment (e.g., <code>OpenSSH_8.7p1</code> reading <code>/etc/ssh/ssh_config</code>) which resolves hosts differently than the Windows System32 OpenSSH environment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: The Solution -->
+        <div *ngIf="activeTab === 'solution'" class="tab-panel fade-in">
+          <div class="trouble-steps">
+            <!-- Step 5: Removing the Old Host Key -->
+            <div class="trouble-step">
+              <span class="step-num">1</span>
+              <div class="step-detail">
+                <h4>Remove the Old Host Key</h4>
+                <p>Run the following command to purge the stale host key from your known hosts file:</p>
+                <div class="code-container">
+                  <pre><code>ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"</code></pre>
+                  <app-copy-button text='ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
+                </div>
+                
+                <p class="mt-1">Verify that the entry is gone:</p>
+                <div class="code-container">
+                  <pre><code>ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"</code></pre>
+                  <app-copy-button text='ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
+                </div>
+                <p class="secondary-info">This check should return no output, confirming the key was successfully cleared.</p>
+              </div>
+            </div>
+
+            <!-- Step 8: Recommended Solution -->
+            <div class="trouble-step">
+              <span class="step-num">2</span>
+              <div class="step-detail">
+                <h4>Configure Git to use Windows OpenSSH</h4>
+                <p>Force Git to use the same Windows OpenSSH client as PowerShell. This aligns the hostname resolution and key cache between both environments:</p>
+                <div class="code-container">
+                  <pre><code>git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"</code></pre>
+                  <app-copy-button text='git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"'></app-copy-button>
+                </div>
+                
+                <p class="mt-1">Verify global configuration:</p>
+                <div class="code-container">
+                  <pre><code>git config --global --get core.sshCommand</code></pre>
+                  <app-copy-button text="git config --global --get core.sshCommand"></app-copy-button>
+                </div>
+                <p class="success-text">Expected Response: <code>C:/Windows/System32/OpenSSH/ssh.exe</code></p>
+              </div>
+            </div>
+
+            <!-- Step 9 & 10: Testing -->
+            <div class="trouble-step">
+              <span class="step-num">3</span>
+              <div class="step-detail">
+                <h4>Verify SSH & Git Fetch</h4>
+                <p>First, perform a direct SSH test again to register the new key if prompted:</p>
+                <div class="code-container">
+                  <pre><code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></pre>
+                  <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
+                </div>
+                <p class="secondary-info">If prompted to accept a new host key, verify the fingerprint matches your server's active key before entering <code>yes</code>.</p>
+
+                <p class="mt-1">Now, test Git fetch:</p>
+                <div class="code-container">
+                  <pre><code>git fetch origin</code></pre>
+                  <app-copy-button text="git fetch origin"></app-copy-button>
+                </div>
+                <p class="success-text">Git should now fetch without host key verification failures!</p>
+              </div>
+            </div>
+
+            <!-- Step 11: Optional Debugging -->
+            <div class="trouble-step">
+              <span class="step-num">4</span>
+              <div class="step-detail">
+                <h4>Optional Verbose Debugging</h4>
+                <p>If issues persist, trigger verbose SSH logging on the fetch command to pinpoint key loaders, file paths, or target IPs:</p>
+                <div class="code-container">
+                  <pre><code>$env:GIT_SSH_COMMAND="C:\Windows\System32\OpenSSH\ssh.exe -v"
+git fetch origin</code></pre>
+                  <app-copy-button text='$env:GIT_SSH_COMMAND="C:\Windows\System32\OpenSSH\ssh.exe -v"
+git fetch origin'></app-copy-button>
+                </div>
+                <p class="secondary-info">Inspect output for lines such as <code>Connecting to...</code>, <code>Server host key...</code>, <code>load_hostkeys</code>, and <code>UserKnownHostsFile</code>.</p>
+                
+                <p class="mt-1">After debugging, clean up the temporary environment variable:</p>
+                <div class="code-container">
+                  <pre><code>Remove-Item Env:GIT_SSH_COMMAND</code></pre>
+                  <app-copy-button text="Remove-Item Env:GIT_SSH_COMMAND"></app-copy-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Summary -->
+        <div *ngIf="activeTab === 'takeaways'" class="tab-panel fade-in">
+          <div class="summary-wrapper">
+            <!-- Security Warning Box -->
+            <div class="note-box danger-box">
+              <span class="icon">🛡️</span>
+              <div>
+                <h4>12. Important Security Note</h4>
+                <p>A changed SSH host key is a serious warning but doesn't always indicate a security attack. It is frequently caused by server upgrades, rebuilds, IP reassignments, or DNS shifts. However, never bypass verification blindly: always confirm the new fingerprint with your Git/server administrator.</p>
+                <p class="mt-05">In this scenario, two different fingerprints were active due to resolving to separate IPs (<code>192.168.1.231</code> vs <code>192.168.1.254</code>). This is a network/DNS level issue that should be raised to network administrators if both continue to be used.</p>
+              </div>
+            </div>
+
+            <!-- Quick Fix Commands Card -->
+            <div class="sub-card quick-fix-card mt-2">
+              <h3>13. Final Quick-Fix Commands</h3>
+              <div class="code-container">
+                <pre><code># 1. Remove old host key
+ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"
+
+# 2. Test SSH
+ssh -T git&#64;ws-srv-git.in.webmyne.com
+
+# 3. Configure Git to use Windows OpenSSH
+git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
+
+# 4. Verify Git SSH configuration
+git config --global --get core.sshCommand
+
+# 5. Fetch repository
+git fetch origin</code></pre>
+                <app-copy-button text='# Remove old host key
+ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"
+
+# Test SSH
+ssh -T git@ws-srv-git.in.webmyne.com
+
+# Configure Git to use Windows OpenSSH
+git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
+
+# Verify Git SSH configuration
+git config --global --get core.sshCommand
+
+# Fetch repository
+git fetch origin'></app-copy-button>
+              </div>
+            </div>
+
+            <!-- Root Cause Summary Box -->
+            <div class="root-cause-box mt-2">
+              <h4>14. Root Cause Summary</h4>
+              <p><strong>Root Cause:</strong> The Git repository was accessible, and the user's SSH authentication was valid. The failure was caused by an SSH host-key mismatch combined with Git using a different SSH environment/server resolution than the normal PowerShell SSH command.</p>
+              <p><strong>Solution:</strong> Purge the stale host key from <code>known_hosts</code>, verify the new server fingerprint, confirm SSH connection via <code>ssh -T</code>, configure Git to explicitly use Windows OpenSSH, and fetch again.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="completion-footer fade-in">
+    <div class="check-icon">✓</div>
+    <h2>Successfully Setup!</h2>
+    <p>Your repository is now connected and ready for deployment.</p>
+  </div>
 </div>
