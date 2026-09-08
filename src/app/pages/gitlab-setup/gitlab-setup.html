@@ -1,8 +1,11 @@
 <div class="cheat-sheet-container fade-in">
-  <div class="header">
-    <div class="gitlab-badge">GitLab</div>
+  <div class="header" id="setup">
+    <div class="header-nav-strip">
+      <div class="gitlab-badge">GitLab</div>
+    </div>
     <h1>GITLAB REPOSITORY SETUP</h1>
-    <p class="intro">Quick guide to pushing projects to GitLab effortlessly using SSH security.</p>
+    <p class="intro">Quick guide to pushing projects to GitLab effortlessly using SSH security, safe branch check-in
+      workflow, and troubleshooting.</p>
   </div>
 
   <div class="content-grid fade-in">
@@ -47,7 +50,7 @@ git push --set-upstream origin main'></app-copy-button>
       </div>
     </section>
 
-    <section class="full-width ssh-section">
+    <section class="full-width ssh-section" id="ssh-setup">
       <h2><span class="icon">🔐</span> SSH Security Setup</h2>
       <p>Ensure your secure connection by configuring SSH keys.</p>
       <div class="code-block-wrapper">
@@ -79,11 +82,320 @@ ssh-add ~/.ssh/id_ed25519'></app-copy-button>
       </div>
     </section>
 
+    <!-- Check In to Main Workflow Section -->
+    <section class="full-width check-in-section" id="check-in-to-main">
+      <div class="check-in-header">
+        <div class="header-title-group">
+          <div class="section-tag">
+            <span class="tag-icon">🔀</span> Step-by-Step Workflow
+          </div>
+          <h2>Check In to Main Branch</h2>
+          <p class="section-intro">
+            Standard workflow for safely merging your feature/working branch into <code>main</code> using Visual Studio
+            GUI or Git CLI.
+          </p>
+        </div>
+        <div class="section-link-chip">
+          <span class="chip-label">Direct Anchor:</span>
+          <code>#check-in-to-main</code>
+          <app-copy-button text="#check-in-to-main"></app-copy-button>
+        </div>
+      </div>
+
+      <!-- Visual Workflow Pipeline Strip -->
+      <div class="workflow-pipeline">
+        <div class="pipe-node active-node">
+          <span class="node-badge">1</span>
+          <span class="node-title">Your Branch</span>
+          <span class="node-desc">Commit & Push</span>
+        </div>
+        <div class="pipe-arrow">➔</div>
+        <div class="pipe-node">
+          <span class="node-badge">2</span>
+          <span class="node-title">Main Branch</span>
+          <span class="node-desc">Fetch & Pull Latest</span>
+        </div>
+        <div class="pipe-arrow">➔</div>
+        <div class="pipe-node warning-node">
+          <span class="node-badge">3</span>
+          <span class="node-title">Sync to Branch</span>
+          <span class="node-desc">Merge Main & Resolve Conflicts</span>
+        </div>
+        <div class="pipe-arrow">➔</div>
+        <div class="pipe-node success-node">
+          <span class="node-badge">4</span>
+          <span class="node-title">Merge to Main</span>
+          <span class="node-desc">Merge Branch into Main</span>
+        </div>
+        <div class="pipe-arrow">➔</div>
+        <div class="pipe-node deploy-node">
+          <span class="node-badge">5</span>
+          <span class="node-title">Deploy</span>
+          <span class="node-desc">Push Main to GitLab</span>
+        </div>
+      </div>
+
+      <!-- 9 Detailed Step Cards -->
+      <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="workflow-step-card">
+          <div class="step-badge">01</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Check you are in your current branch</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Verify your active branch before staging changes. Ensure you are working on your assigned feature/bugfix
+              branch and not directly making edits on <code>main</code>.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Check the bottom-right status bar or the branch label at the top of the <strong>Git Changes</strong>
+                window (e.g., <code>feature/your-branch</code>).</p>
+            </div>
+            <div class="code-container">
+              <pre><code>git branch --show-current</code></pre>
+              <app-copy-button text="git branch --show-current"></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="workflow-step-card">
+          <div class="step-badge">02</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Stage Changes using (+)</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Stage all your modified and newly added files so they are prepared for committing.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Open the <strong>Git Changes</strong> panel (<code>View</code> → <code>Git Changes</code> or
+                <code>Ctrl+0, Ctrl+G</code>). Under the <strong>Changes</strong> header, click the
+                <strong><code>+</code> (Stage All)</strong> icon, or click <code>+</code> next to individual files.
+              </p>
+            </div>
+            <div class="code-container">
+              <pre><code>git add .</code></pre>
+              <app-copy-button text="git add ."></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="workflow-step-card">
+          <div class="step-badge">03</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Commit changes and push into your branch</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Save your staged snapshot locally with a descriptive commit message, then push it to your remote feature
+              branch on GitLab.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Type your commit message in the text area, click <strong>Commit Staged</strong>, then click the
+                <strong>Push</strong> button (up arrow <code>↑</code>) in the Git Changes toolbar or status bar.
+              </p>
+            </div>
+            <div class="code-container">
+              <pre><code>git commit -m "feat: your descriptive commit message"
+git push origin HEAD</code></pre>
+              <app-copy-button text='git commit -m "feat: your descriptive commit message"
+git push origin HEAD'></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="workflow-step-card">
+          <div class="step-badge">04</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Switch to main and fetch & pull changes</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Switch your local workspace to the <code>main</code> branch and pull the latest changes submitted by team
+              members from the remote repository.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Click the branch picker at the bottom-right status bar and select <strong>main</strong>. Then in the
+                Git Changes panel, click <strong>Fetch</strong> followed by <strong>Pull</strong> (or down arrow
+                <code>↓</code>).
+              </p>
+            </div>
+            <div class="code-container">
+              <pre><code>git checkout main
+git pull origin main</code></pre>
+              <app-copy-button text='git checkout main
+git pull origin main'></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="workflow-step-card">
+          <div class="step-badge">05</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Switch back to your branch</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Switch back to your active feature branch so you can safely incorporate the latest updates from
+              <code>main</code>.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Click the branch selector in the bottom-right status bar or <strong>Git Repository</strong> window and
+                checkout <strong>your branch</strong>.</p>
+            </div>
+            <div class="code-container">
+              <pre><code>git checkout &lt;your-branch-name&gt;</code></pre>
+              <app-copy-button text="git checkout your-branch-name"></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="workflow-step-card highlight-step">
+          <div class="step-badge">06</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Right click on main branch and merge changes to your branch</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Merge the freshly updated <code>main</code> branch into your feature branch. This ensures any merge
+              conflicts or integration issues are tested and resolved in your branch first, protecting
+              <code>main</code>.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Open <strong>Git Repository</strong> (<code>Git</code> → <code>Manage Branches</code> or
+                <code>Ctrl+0, Ctrl+R</code>). Under <strong>Local Branches</strong>, <strong>right-click on
+                  <code>main</code></strong> and choose <strong>"Merge into Current Branch"</strong>. If any conflicts
+                arise, resolve them using the VS Merge Conflict Editor and click <strong>Commit Merge</strong>.
+              </p>
+            </div>
+            <div class="code-container">
+              <pre><code>git merge main</code></pre>
+              <app-copy-button text="git merge main"></app-copy-button>
+            </div>
+            <div class="tip-box">
+              <span class="tip-icon">💡</span>
+              <span><strong>Testing Checkpoint:</strong> Build and run your project now to confirm everything compiles
+                and passes tests!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="workflow-step-card">
+          <div class="step-badge">07</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Switch to main branch</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Now that your working branch is fully tested, conflict-free, and up to date with <code>main</code>, switch
+              back to the <code>main</code> branch.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>Use the bottom-right branch dropdown or Git Repository window to checkout <strong>main</strong>.</p>
+            </div>
+            <div class="code-container">
+              <pre><code>git checkout main</code></pre>
+              <app-copy-button text="git checkout main"></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="workflow-step-card highlight-step">
+          <div class="step-badge">08</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Right click on your branch and merge changes to main branch</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Merge your feature branch into <code>main</code>. Because you already resolved all conflicts in Step 6,
+              this merge will complete cleanly with zero conflicts!
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>In the <strong>Git Repository</strong> window (<code>Git</code> → <code>Manage Branches</code>), under
+                <strong>Local Branches</strong>, <strong>right-click on your branch</strong> and select <strong>"Merge
+                  into Current Branch"</strong> (merging your branch into <code>main</code>).
+              </p>
+            </div>
+            <div class="code-container">
+              <pre><code>git merge &lt;your-branch-name&gt;</code></pre>
+              <app-copy-button text="git merge your-branch-name"></app-copy-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 9 -->
+        <div class="workflow-step-card success-step">
+          <div class="step-badge">09</div>
+          <div class="step-body">
+            <div class="step-headline">
+              <h3>Push changes to main</h3>
+              <span class="method-tag vs-tag"><i class="vs-icon">🔷</i> Visual Studio & CLI</span>
+            </div>
+            <p class="step-explanation">
+              Push your newly merged <code>main</code> branch directly to the remote GitLab repository to make your
+              changes live for the entire team.
+            </p>
+            <div class="gui-guide">
+              <span class="gui-label">Visual Studio:</span>
+              <p>In the <strong>Git Changes</strong> window or status bar, click the <strong>Push</strong> button (up
+                arrow <code>↑</code>) or go to <code>Git</code> → <code>Push</code>.</p>
+            </div>
+            <div class="code-container">
+              <pre><code>git push origin main</code></pre>
+              <app-copy-button text="git push origin main"></app-copy-button>
+            </div>
+            <div class="success-callout">
+              <span class="callout-icon">🎉</span>
+              <span><strong>All Done!</strong> Your changes are now safely checked in to the remote <code>main</code>
+                branch.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Practice Note -->
+      <div class="note-box info-note mt-2">
+        <span class="icon">🛡️</span>
+        <div>
+          <h4>Why this workflow keeps <code>main</code> safe:</h4>
+          <p>
+            By merging <code>main</code> into your feature branch first (Step 6), all conflict resolutions and testing
+            occur locally on your branch. <code>main</code> is never broken by an untested merge conflict!
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Troubleshooting Section -->
-    <section class="full-width troubleshooting-section">
+    <section class="full-width troubleshooting-section" id="troubleshooting">
       <div class="troubleshooting-header">
         <h2><span class="icon">🔍</span> Host Key Mismatch Troubleshooting</h2>
-        <p class="section-intro">Detailed troubleshooting guide for when Visual Studio or Git reports host identification changes or mismatches.</p>
+        <p class="section-intro">Detailed troubleshooting guide for when Visual Studio or Git reports host
+          identification changes or mismatches.</p>
       </div>
 
       <!-- Tab Controls -->
@@ -159,7 +471,8 @@ fatal: Could not read from remote repository.</code></pre>
                 </div>
                 <p class="success-text">Expected Response: <code>Welcome to GitLab, &#64;vansh!</code></p>
                 <p class="insight">
-                  This confirms that SSH authentication is working, the SSH key is valid, and GitLab permissions are correct.
+                  This confirms that SSH authentication is working, the SSH key is valid, and GitLab permissions are
+                  correct.
                   The problem is strictly an <strong>SSH host-key verification</strong> issue.
                 </p>
               </div>
@@ -171,10 +484,14 @@ fatal: Could not read from remote repository.</code></pre>
               <div class="step-detail">
                 <h4>Stale Host Key</h4>
                 <p>SSH reported: <code>Offending ECDSA key in /c/Users/vansh/.ssh/known_hosts:4</code></p>
-                <p>This means your local <code>known_hosts</code> file contains an old SSH host key for <code>ws-srv-git.in.webmyne.com</code>. This usually happens when the Git server is rebuilt, migrated, has keys regenerated, or IP/DNS settings change.</p>
+                <p>This means your local <code>known_hosts</code> file contains an old SSH host key for
+                  <code>ws-srv-git.in.webmyne.com</code>. This usually happens when the Git server is rebuilt, migrated,
+                  has keys regenerated, or IP/DNS settings change.
+                </p>
                 <div class="note-box warning">
                   <span class="icon">⚠️</span>
-                  <p>Always verify key changes with your administrator before accepting a new key to prevent man-in-the-middle attacks.</p>
+                  <p>Always verify key changes with your administrator before accepting a new key to prevent
+                    man-in-the-middle attacks.</p>
                 </div>
               </div>
             </div>
@@ -184,8 +501,9 @@ fatal: Could not read from remote repository.</code></pre>
               <span class="step-num">C</span>
               <div class="step-detail">
                 <h4>Key Finding: Different SSH Clients</h4>
-                <p>Troubleshooting revealed that PowerShell and Git resolved hostnames to different IP addresses and keys:</p>
-                
+                <p>Troubleshooting revealed that PowerShell and Git resolved hostnames to different IP addresses and
+                  keys:</p>
+
                 <div class="comparison-grid">
                   <div class="comp-box">
                     <h5>Normal PowerShell SSH</h5>
@@ -206,7 +524,8 @@ fatal: Could not read from remote repository.</code></pre>
                     <code class="fingerprint">ED25519 SHA256:eaJLX1fgTmjh9N+GcTkNNm/TK/QM1LW1UD9bsy235tk</code>
                   </div>
                 </div>
-                <p class="insight mt-1">This mismatch indicates Git and standard PowerShell SSH were connecting to different targets/gateways.</p>
+                <p class="insight mt-1">This mismatch indicates Git and standard PowerShell SSH were connecting to
+                  different targets/gateways.</p>
               </div>
             </div>
 
@@ -221,7 +540,7 @@ fatal: Could not read from remote repository.</code></pre>
                   <app-copy-button text="where.exe ssh"></app-copy-button>
                 </div>
                 <p>Response: <code>C:\Windows\System32\OpenSSH\ssh.exe</code></p>
-                
+
                 <p class="mt-1">Checking Git's configured SSH command:</p>
                 <div class="code-container">
                   <pre><code>git config --show-origin --get core.sshCommand</code></pre>
@@ -229,7 +548,9 @@ fatal: Could not read from remote repository.</code></pre>
                 </div>
                 <p>Response: <em>None (empty)</em></p>
                 <p class="insight">
-                  By default, Git uses its own built-in Git-for-Windows SSH environment (e.g., <code>OpenSSH_8.7p1</code> reading <code>/etc/ssh/ssh_config</code>) which resolves hosts differently than the Windows System32 OpenSSH environment.
+                  By default, Git uses its own built-in Git-for-Windows SSH environment (e.g.,
+                  <code>OpenSSH_8.7p1</code> reading <code>/etc/ssh/ssh_config</code>) which resolves hosts differently
+                  than the Windows System32 OpenSSH environment.
                 </p>
               </div>
             </div>
@@ -247,15 +568,18 @@ fatal: Could not read from remote repository.</code></pre>
                 <p>Run the following command to purge the stale host key from your known hosts file:</p>
                 <div class="code-container">
                   <pre><code>ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"</code></pre>
-                  <app-copy-button text='ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
+                  <app-copy-button
+                    text='ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
                 </div>
-                
+
                 <p class="mt-1">Verify that the entry is gone:</p>
                 <div class="code-container">
                   <pre><code>ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"</code></pre>
-                  <app-copy-button text='ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
+                  <app-copy-button
+                    text='ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
                 </div>
-                <p class="secondary-info">This check should return no output, confirming the key was successfully cleared.</p>
+                <p class="secondary-info">This check should return no output, confirming the key was successfully
+                  cleared.</p>
               </div>
             </div>
 
@@ -264,12 +588,14 @@ fatal: Could not read from remote repository.</code></pre>
               <span class="step-num">2</span>
               <div class="step-detail">
                 <h4>Configure Git to use Windows OpenSSH</h4>
-                <p>Force Git to use the same Windows OpenSSH client as PowerShell. This aligns the hostname resolution and key cache between both environments:</p>
+                <p>Force Git to use the same Windows OpenSSH client as PowerShell. This aligns the hostname resolution
+                  and key cache between both environments:</p>
                 <div class="code-container">
                   <pre><code>git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"</code></pre>
-                  <app-copy-button text='git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"'></app-copy-button>
+                  <app-copy-button
+                    text='git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"'></app-copy-button>
                 </div>
-                
+
                 <p class="mt-1">Verify global configuration:</p>
                 <div class="code-container">
                   <pre><code>git config --global --get core.sshCommand</code></pre>
@@ -289,7 +615,8 @@ fatal: Could not read from remote repository.</code></pre>
                   <pre><code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></pre>
                   <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
                 </div>
-                <p class="secondary-info">If prompted to accept a new host key, verify the fingerprint matches your server's active key before entering <code>yes</code>.</p>
+                <p class="secondary-info">If prompted to accept a new host key, verify the fingerprint matches your
+                  server's active key before entering <code>yes</code>.</p>
 
                 <p class="mt-1">Now, test Git fetch:</p>
                 <div class="code-container">
@@ -305,15 +632,18 @@ fatal: Could not read from remote repository.</code></pre>
               <span class="step-num">4</span>
               <div class="step-detail">
                 <h4>Optional Verbose Debugging</h4>
-                <p>If issues persist, trigger verbose SSH logging on the fetch command to pinpoint key loaders, file paths, or target IPs:</p>
+                <p>If issues persist, trigger verbose SSH logging on the fetch command to pinpoint key loaders, file
+                  paths, or target IPs:</p>
                 <div class="code-container">
                   <pre><code>$env:GIT_SSH_COMMAND="C:\Windows\System32\OpenSSH\ssh.exe -v"
 git fetch origin</code></pre>
                   <app-copy-button text='$env:GIT_SSH_COMMAND="C:\Windows\System32\OpenSSH\ssh.exe -v"
 git fetch origin'></app-copy-button>
                 </div>
-                <p class="secondary-info">Inspect output for lines such as <code>Connecting to...</code>, <code>Server host key...</code>, <code>load_hostkeys</code>, and <code>UserKnownHostsFile</code>.</p>
-                
+                <p class="secondary-info">Inspect output for lines such as <code>Connecting to...</code>,
+                  <code>Server host key...</code>, <code>load_hostkeys</code>, and <code>UserKnownHostsFile</code>.
+                </p>
+
                 <p class="mt-1">After debugging, clean up the temporary environment variable:</p>
                 <div class="code-container">
                   <pre><code>Remove-Item Env:GIT_SSH_COMMAND</code></pre>
@@ -332,8 +662,12 @@ git fetch origin'></app-copy-button>
               <span class="icon">🛡️</span>
               <div>
                 <h4>12. Important Security Note</h4>
-                <p>A changed SSH host key is a serious warning but doesn't always indicate a security attack. It is frequently caused by server upgrades, rebuilds, IP reassignments, or DNS shifts. However, never bypass verification blindly: always confirm the new fingerprint with your Git/server administrator.</p>
-                <p class="mt-05">In this scenario, two different fingerprints were active due to resolving to separate IPs (<code>192.168.1.231</code> vs <code>192.168.1.254</code>). This is a network/DNS level issue that should be raised to network administrators if both continue to be used.</p>
+                <p>A changed SSH host key is a serious warning but doesn't always indicate a security attack. It is
+                  frequently caused by server upgrades, rebuilds, IP reassignments, or DNS shifts. However, never bypass
+                  verification blindly: always confirm the new fingerprint with your Git/server administrator.</p>
+                <p class="mt-05">In this scenario, two different fingerprints were active due to resolving to separate
+                  IPs (<code>192.168.1.231</code> vs <code>192.168.1.254</code>). This is a network/DNS level issue that
+                  should be raised to network administrators if both continue to be used.</p>
               </div>
             </div>
 
@@ -375,8 +709,12 @@ git fetch origin'></app-copy-button>
             <!-- Root Cause Summary Box -->
             <div class="root-cause-box mt-2">
               <h4>14. Root Cause Summary</h4>
-              <p><strong>Root Cause:</strong> The Git repository was accessible, and the user's SSH authentication was valid. The failure was caused by an SSH host-key mismatch combined with Git using a different SSH environment/server resolution than the normal PowerShell SSH command.</p>
-              <p><strong>Solution:</strong> Purge the stale host key from <code>known_hosts</code>, verify the new server fingerprint, confirm SSH connection via <code>ssh -T</code>, configure Git to explicitly use Windows OpenSSH, and fetch again.</p>
+              <p><strong>Root Cause:</strong> The Git repository was accessible, and the user's SSH authentication was
+                valid. The failure was caused by an SSH host-key mismatch combined with Git using a different SSH
+                environment/server resolution than the normal PowerShell SSH command.</p>
+              <p><strong>Solution:</strong> Purge the stale host key from <code>known_hosts</code>, verify the new
+                server fingerprint, confirm SSH connection via <code>ssh -T</code>, configure Git to explicitly use
+                Windows OpenSSH, and fetch again.</p>
             </div>
           </div>
         </div>
