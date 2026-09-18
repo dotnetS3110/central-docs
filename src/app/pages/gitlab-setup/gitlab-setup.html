@@ -5,7 +5,7 @@
     </div>
     <h1>GITLAB REPOSITORY SETUP</h1>
     <p class="intro">Quick guide to pushing projects to GitLab effortlessly using SSH security, safe branch check-in
-      workflow, and troubleshooting.</p>
+      workflow, and troubleshooting host key changes.</p>
   </div>
 
   <div class="content-grid fade-in">
@@ -52,7 +52,22 @@ git push --set-upstream origin main'></app-copy-button>
 
     <section class="full-width ssh-section" id="ssh-setup">
       <h2><span class="icon">🔐</span> SSH Security Setup</h2>
-      <p>Ensure your secure connection by configuring SSH keys.</p>
+      <p>Ensure your secure connection by enabling the Windows SSH agent service and configuring SSH keys.</p>
+
+      <!-- Step A: Enable Windows SSH-Agent -->
+      <p class="secondary-info" style="margin-top: 1.25rem;"><strong>1. Enable & Start Windows SSH Agent Service
+          (PowerShell Run as Admin):</strong></p>
+      <div class="code-container">
+        <pre><code>Get-Service ssh-agent
+Set-Service -Name ssh-agent -StartupType Automatic
+Start-Service ssh-agent</code></pre>
+        <app-copy-button text="Get-Service ssh-agent
+Set-Service -Name ssh-agent -StartupType Automatic
+Start-Service ssh-agent"></app-copy-button>
+      </div>
+
+      <!-- Step B: Keygen & Add -->
+      <p class="secondary-info"><strong>2. Generate SSH Key & Add to Agent:</strong></p>
       <div class="code-block-wrapper">
         <div class="code-container">
           <pre><code>ssh-keygen -t ed25519 -C "your_email&#64;example.com"
@@ -62,12 +77,14 @@ ssh-add ~/.ssh/id_ed25519'></app-copy-button>
         </div>
       </div>
 
-      <p class="secondary-info">Copy your public key and add it to GitLab Settings:</p>
+      <!-- Step C: Copy Public Key -->
+      <p class="secondary-info"><strong>3. Copy Public Key to GitLab:</strong></p>
       <div class="code-container">
         <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
         <app-copy-button text="cat ~/.ssh/id_ed25519.pub"></app-copy-button>
       </div>
 
+      <!-- Step D: Test Connection -->
       <div class="test-connection success">
         <span class="icon">🧪</span>
         <div class="test-msg">
@@ -78,7 +95,9 @@ ssh-add ~/.ssh/id_ed25519'></app-copy-button>
 
       <div class="note-box warning">
         <span class="icon">⚠️</span>
-        <p><strong>Note:</strong> For custom keys, configure <code>~/.ssh/config</code>.</p>
+        <p><strong>Note:</strong> If <code>ssh-add</code> errors with <em>"unable to start ssh-agent service"</em>,
+          verify that <code>ssh-agent</code> service startup type is set to <strong>Automatic</strong> and started via
+          the commands in Step 1.</p>
       </div>
     </section>
 
@@ -390,24 +409,37 @@ git pull origin main'></app-copy-button>
       </div>
     </section>
 
-    <!-- Troubleshooting Section -->
+    <!-- Troubleshooting Section: Git SSH Remote Host Identification Changed -->
     <section class="full-width troubleshooting-section" id="troubleshooting">
       <div class="troubleshooting-header">
-        <h2><span class="icon">🔍</span> Host Key Mismatch Troubleshooting</h2>
-        <p class="section-intro">Detailed troubleshooting guide for when Visual Studio or Git reports host
-          identification changes or mismatches.</p>
+        <div class="header-title-group">
+          <div class="section-tag"
+            style="background: rgba(244, 63, 94, 0.1); color: var(--accent); border-color: rgba(244, 63, 94, 0.2);">
+            <span class="tag-icon">⚠️</span> Troubleshooting Guide
+          </div>
+          <h2 style="margin-top: 0.5rem;"><span class="icon">🔍</span> Git SSH – Remote Host Identification Changed</h2>
+          <p class="section-intro">
+            Comprehensive resolution guide for when Git or Visual Studio detects an SSH host identification mismatch
+            during fetch or pull operations.
+          </p>
+        </div>
+        <div class="section-link-chip">
+          <span class="chip-label">Direct Anchor:</span>
+          <code>#troubleshooting</code>
+          <app-copy-button text="#troubleshooting"></app-copy-button>
+        </div>
       </div>
 
       <!-- Tab Controls -->
       <div class="tabs-container">
         <button class="tab-btn" [class.active]="activeTab === 'problem'" (click)="setTab('problem')">
-          <span class="tab-icon">⚠️</span> 1. The Issue
+          <span class="tab-icon">⚠️</span> 1. The Error
         </button>
         <button class="tab-btn" [class.active]="activeTab === 'investigation'" (click)="setTab('investigation')">
-          <span class="tab-icon">🕵️</span> 2. Diagnosis
+          <span class="tab-icon">🕵️</span> 2. Cause & Details
         </button>
         <button class="tab-btn" [class.active]="activeTab === 'solution'" (click)="setTab('solution')">
-          <span class="tab-icon">💡</span> 3. The Solution
+          <span class="tab-icon">💡</span> 3. Step-by-Step Solution
         </button>
         <button class="tab-btn" [class.active]="activeTab === 'takeaways'" (click)="setTab('takeaways')">
           <span class="tab-icon">✅</span> 4. Quick Fix & Summary
@@ -416,305 +448,318 @@ git pull origin main'></app-copy-button>
 
       <!-- Tab Content -->
       <div class="tab-content-wrapper">
-        <!-- Tab 1: The Problem -->
+        <!-- Tab 1: The Error -->
         <div *ngIf="activeTab === 'problem'" class="tab-panel fade-in">
           <div class="card-pair">
             <!-- Issue Card -->
             <div class="sub-card error-card">
-              <h3>1. The Issue</h3>
-              <p>While performing <strong>Git Fetch/Pull from Visual Studio</strong>, the following error occurred:</p>
+              <h3>1. Visual Studio / Git Error Output</h3>
+              <p>While fetching or pulling a Git repository from Visual Studio, the following error may occur:</p>
               <div class="error-console">
-                <pre><code>WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+                <pre><code>&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
+&#64;    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     &#64;
+&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;&#64;
 
 IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 Someone could be eavesdropping on you right now (man-in-the-middle attack)!
 
-Offending ECDSA key in /c/Users/vansh/.ssh/known_hosts:4
-Host key for ws-srv-git.in.webmyne.com has changed and you have requested strict checking.
-Host key verification failed.
+It is also possible that a host key has just been changed.
 
-fatal: Could not read from remote repository.</code></pre>
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA.
+
+Add correct host key in C:\Users\vansh/.ssh/known_hosts to get rid of this message.
+
+Offending ED25519 key in C:\Users\vansh/.ssh/known_hosts:2
+
+Host key for ws-srv-git.in.webmyne.com has changed and you have requested strict checking.
+
+Host key verification failed.</code></pre>
               </div>
-              <p class="card-caption">Note: Git fetch was failing even though SSH authentication itself was working.</p>
+              <app-copy-button text="@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+
+It is also possible that a host key has just been changed.
+
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA.
+
+Add correct host key in C:\Users\vansh/.ssh/known_hosts to get rid of this message.
+
+Offending ED25519 key in C:\Users\vansh/.ssh/known_hosts:2
+
+Host key for ws-srv-git.in.webmyne.com has changed and you have requested strict checking.
+
+Host key verification failed."></app-copy-button>
+              <p class="card-caption">Note: Git rejects the remote host connection because strict checking detected that
+                the host key stored locally differs from the server's key.</p>
             </div>
 
-            <!-- Repo Info Card -->
+            <!-- Environment Details Card -->
             <div class="sub-card info-card">
-              <h3>2. Repository Information</h3>
+              <h3>2. Connection & Key Context</h3>
+              <p>The error message reveals the exact parameters involved in this mismatch:</p>
               <div class="meta-list">
                 <div class="meta-item">
-                  <span class="meta-label">Local Repository:</span>
-                  <code>D:\Vansh\Projects\CGD\CharotalGAS\Charotar_GAS</code>
+                  <span class="meta-label">Git Server Host:</span>
+                  <code>ws-srv-git.in.webmyne.com</code>
                 </div>
                 <div class="meta-item">
-                  <span class="meta-label">Git Remote:</span>
-                  <code>origin  git&#64;ws-srv-git.in.webmyne.com:city-gas-distribution-cgd/charotar_gas.git</code>
+                  <span class="meta-label">SSH Known-Hosts File:</span>
+                  <code>C:\Users\vansh\.ssh\known_hosts</code>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Offending Line Entry:</span>
+                  <code>Line 2</code>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">New ED25519 Fingerprint:</span>
+                  <code>SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA</code>
                 </div>
               </div>
-              <p class="secondary-info">The remote repository URL is correct and valid.</p>
+              <div class="tip-box mt-1">
+                <span>💡</span>
+                <span>The offending key on <strong>Line 2</strong> in <code>known_hosts</code> prevents any fetch, pull,
+                  or push operation until updated.</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Tab 2: Diagnosis -->
+        <!-- Tab 2: Cause -->
         <div *ngIf="activeTab === 'investigation'" class="tab-panel fade-in">
           <div class="trouble-steps">
-            <!-- Step 3: Initial Diagnosis -->
+            <!-- Cause Explanation -->
             <div class="trouble-step">
-              <span class="step-num">A</span>
+              <span class="step-num">!</span>
               <div class="step-detail">
-                <h4>Initial Connection Test</h4>
-                <p>First, test if GitLab SSH authentication works directly:</p>
-                <div class="code-container">
-                  <pre><code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></pre>
-                  <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
-                </div>
-                <p class="success-text">Expected Response: <code>Welcome to GitLab, &#64;vansh!</code></p>
+                <h4>What Causes This Error?</h4>
+                <p>
+                  This error occurs when the <strong>SSH host key stored on the local computer</strong> does not match
+                  the <strong>host key currently provided by the Git server</strong>.
+                </p>
                 <p class="insight">
-                  This confirms that SSH authentication is working, the SSH key is valid, and GitLab permissions are
-                  correct.
-                  The problem is strictly an <strong>SSH host-key verification</strong> issue.
+                  The SSH client stores previously verified host keys in your <code>known_hosts</code> file. When
+                  reconnecting, SSH verifies the remote server's cryptographic identity against that stored fingerprint.
+                  If they do not match, SSH intentionally blocks the connection to protect against potentially
+                  connecting to an impersonated server.
                 </p>
               </div>
             </div>
 
-            <!-- Step 4: Old Host Key -->
+            <!-- 6 Common Reasons -->
             <div class="trouble-step">
-              <span class="step-num">B</span>
+              <span class="step-num">📋</span>
               <div class="step-detail">
-                <h4>Stale Host Key</h4>
-                <p>SSH reported: <code>Offending ECDSA key in /c/Users/vansh/.ssh/known_hosts:4</code></p>
-                <p>This means your local <code>known_hosts</code> file contains an old SSH host key for
-                  <code>ws-srv-git.in.webmyne.com</code>. This usually happens when the Git server is rebuilt, migrated,
-                  has keys regenerated, or IP/DNS settings change.
-                </p>
-                <div class="note-box warning">
-                  <span class="icon">⚠️</span>
-                  <p>Always verify key changes with your administrator before accepting a new key to prevent
-                    man-in-the-middle attacks.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 6: Different SSH Connections -->
-            <div class="trouble-step">
-              <span class="step-num">C</span>
-              <div class="step-detail">
-                <h4>Key Finding: Different SSH Clients</h4>
-                <p>Troubleshooting revealed that PowerShell and Git resolved hostnames to different IP addresses and
-                  keys:</p>
-
-                <div class="comparison-grid">
-                  <div class="comp-box">
-                    <h5>Normal PowerShell SSH</h5>
-                    <span class="comp-arrow">↓</span>
-                    <p>ws-srv-git.in.webmyne.com</p>
-                    <span class="comp-arrow">↓</span>
-                    <p class="highlight-ip">192.168.1.231</p>
-                    <span class="comp-arrow">↓</span>
-                    <code class="fingerprint">ED25519 SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA</code>
+                <h4>Common Reasons Include:</h4>
+                <p>A host key difference typically happens due to one of the following reasons:</p>
+                <div class="reasons-list">
+                  <div class="reason-item">
+                    <span class="reason-num">1</span>
+                    <span><strong>Git server was rebuilt or reinstalled</strong> (fresh server installation generated
+                      new host keys).</span>
                   </div>
-                  <div class="comp-box vs-box">
-                    <h5>Git Fetch SSH Process</h5>
-                    <span class="comp-arrow">↓</span>
-                    <p>ws-srv-git.in.webmyne.com</p>
-                    <span class="comp-arrow">↓</span>
-                    <p class="highlight-ip">192.168.1.254</p>
-                    <span class="comp-arrow">↓</span>
-                    <code class="fingerprint">ED25519 SHA256:eaJLX1fgTmjh9N+GcTkNNm/TK/QM1LW1UD9bsy235tk</code>
+                  <div class="reason-item">
+                    <span class="reason-num">2</span>
+                    <span><strong>SSH host keys were regenerated</strong> by the administrator.</span>
+                  </div>
+                  <div class="reason-item">
+                    <span class="reason-num">3</span>
+                    <span><strong>Git server was migrated</strong> to another machine or platform.</span>
+                  </div>
+                  <div class="reason-item">
+                    <span class="reason-num">4</span>
+                    <span><strong>Server infrastructure or IP was changed</strong>.</span>
+                  </div>
+                  <div class="reason-item">
+                    <span class="reason-num">5</span>
+                    <span><strong>The old SSH host key is still stored</strong> in the local <code>known_hosts</code>
+                      file.</span>
+                  </div>
+                  <div class="reason-item security-reason">
+                    <span class="reason-num">6</span>
+                    <span><strong>Security risk:</strong> In rare cases, the connection could be subject to a
+                      man-in-the-middle (MITM) attack.</span>
                   </div>
                 </div>
-                <p class="insight mt-1">This mismatch indicates Git and standard PowerShell SSH were connecting to
-                  different targets/gateways.</p>
-              </div>
-            </div>
-
-            <!-- Step 7: SSH Client Check -->
-            <div class="trouble-step">
-              <span class="step-num">D</span>
-              <div class="step-detail">
-                <h4>Investigating SSH Executable Differences</h4>
-                <p>Checking the environment paths:</p>
-                <div class="code-container">
-                  <pre><code>where.exe ssh</code></pre>
-                  <app-copy-button text="where.exe ssh"></app-copy-button>
-                </div>
-                <p>Response: <code>C:\Windows\System32\OpenSSH\ssh.exe</code></p>
-
-                <p class="mt-1">Checking Git's configured SSH command:</p>
-                <div class="code-container">
-                  <pre><code>git config --show-origin --get core.sshCommand</code></pre>
-                  <app-copy-button text="git config --show-origin --get core.sshCommand"></app-copy-button>
-                </div>
-                <p>Response: <em>None (empty)</em></p>
-                <p class="insight">
-                  By default, Git uses its own built-in Git-for-Windows SSH environment (e.g.,
-                  <code>OpenSSH_8.7p1</code> reading <code>/etc/ssh/ssh_config</code>) which resolves hosts differently
-                  than the Windows System32 OpenSSH environment.
-                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Tab 3: The Solution -->
+        <!-- Tab 3: Solution -->
         <div *ngIf="activeTab === 'solution'" class="tab-panel fade-in">
           <div class="trouble-steps">
-            <!-- Step 5: Removing the Old Host Key -->
+            <!-- Step 1: Verify -->
             <div class="trouble-step">
               <span class="step-num">1</span>
               <div class="step-detail">
-                <h4>Remove the Old Host Key</h4>
-                <p>Run the following command to purge the stale host key from your known hosts file:</p>
+                <h4>Step 1 – Verify the New Server Fingerprint</h4>
+                <p>Before removing the old key, confirm with the Git/server administrator that the new fingerprint is
+                  legitimate:</p>
                 <div class="code-container">
-                  <pre><code>ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"</code></pre>
-                  <app-copy-button
-                    text='ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
+                  <pre><code>SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA</code></pre>
+                  <app-copy-button text="SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA"></app-copy-button>
                 </div>
-
-                <p class="mt-1">Verify that the entry is gone:</p>
-                <div class="code-container">
-                  <pre><code>ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"</code></pre>
-                  <app-copy-button
-                    text='ssh-keygen -F ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"'></app-copy-button>
+                <div class="note-box warning">
+                  <span class="icon">⚠️</span>
+                  <p><strong>Crucial Rule:</strong> Do not blindly accept a changed host key without verification.</p>
                 </div>
-                <p class="secondary-info">This check should return no output, confirming the key was successfully
-                  cleared.</p>
               </div>
             </div>
 
-            <!-- Step 8: Recommended Solution -->
+            <!-- Step 2: Remove old key -->
             <div class="trouble-step">
               <span class="step-num">2</span>
               <div class="step-detail">
-                <h4>Configure Git to use Windows OpenSSH</h4>
-                <p>Force Git to use the same Windows OpenSSH client as PowerShell. This aligns the hostname resolution
-                  and key cache between both environments:</p>
+                <h4>Step 2 – Remove the Old SSH Host Key</h4>
+                <p>Open <strong>PowerShell</strong> and execute:</p>
                 <div class="code-container">
-                  <pre><code>git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"</code></pre>
-                  <app-copy-button
-                    text='git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"'></app-copy-button>
+                  <pre><code>ssh-keygen -R ws-srv-git.in.webmyne.com</code></pre>
+                  <app-copy-button text="ssh-keygen -R ws-srv-git.in.webmyne.com"></app-copy-button>
                 </div>
-
-                <p class="mt-1">Verify global configuration:</p>
-                <div class="code-container">
-                  <pre><code>git config --global --get core.sshCommand</code></pre>
-                  <app-copy-button text="git config --global --get core.sshCommand"></app-copy-button>
-                </div>
-                <p class="success-text">Expected Response: <code>C:/Windows/System32/OpenSSH/ssh.exe</code></p>
+                <p class="secondary-info">This removes the old host-key entry from:
+                  <code>C:\Users\vansh\.ssh\known_hosts</code>
+                </p>
               </div>
             </div>
 
-            <!-- Step 9 & 10: Testing -->
+            <!-- Step 3: Test connection -->
             <div class="trouble-step">
               <span class="step-num">3</span>
               <div class="step-detail">
-                <h4>Verify SSH & Git Fetch</h4>
-                <p>First, perform a direct SSH test again to register the new key if prompted:</p>
+                <h4>Step 3 – Test the SSH Connection</h4>
+                <p>Run the test connection command:</p>
                 <div class="code-container">
                   <pre><code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></pre>
                   <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
                 </div>
-                <p class="secondary-info">If prompted to accept a new host key, verify the fingerprint matches your
-                  server's active key before entering <code>yes</code>.</p>
+                <p class="mt-1">SSH will ask whether the new host should be trusted:</p>
+                <div class="error-console">
+                  <pre><code>The authenticity of host 'ws-srv-git.in.webmyne.com' can't be established.
 
-                <p class="mt-1">Now, test Git fetch:</p>
-                <div class="code-container">
-                  <pre><code>git fetch origin</code></pre>
-                  <app-copy-button text="git fetch origin"></app-copy-button>
+ED25519 key fingerprint is
+SHA256:gqDFXIUdI1Bdj0PUPsaKBGhfxYpgs3P2nXtImYwSHBA.
+
+Are you sure you want to continue connecting
+(yes/no/[fingerprint])?</code></pre>
                 </div>
-                <p class="success-text">Git should now fetch without host key verification failures!</p>
+                <p class="mt-1">After confirming the fingerprint, enter:</p>
+                <div class="code-container">
+                  <pre><code>yes</code></pre>
+                  <app-copy-button text="yes"></app-copy-button>
+                </div>
+                <p class="success-text mt-05">✓ The new host key will then be added to the <code>known_hosts</code>
+                  file.</p>
               </div>
             </div>
 
-            <!-- Step 11: Optional Debugging -->
+            <!-- Step 4: Retry Fetch/Pull -->
             <div class="trouble-step">
               <span class="step-num">4</span>
               <div class="step-detail">
-                <h4>Optional Verbose Debugging</h4>
-                <p>If issues persist, trigger verbose SSH logging on the fetch command to pinpoint key loaders, file
-                  paths, or target IPs:</p>
+                <h4>Step 4 – Retry Git Fetch / Pull</h4>
+                <p>After successfully establishing the SSH connection, return to <strong>Visual Studio</strong> and
+                  perform:</p>
                 <div class="code-container">
-                  <pre><code>$env:GIT_SSH_COMMAND="C:\Windows\System32\OpenSSH\ssh.exe -v"
-git fetch origin</code></pre>
-                  <app-copy-button text='$env:GIT_SSH_COMMAND="C:\Windows\System32\OpenSSH\ssh.exe -v"
-git fetch origin'></app-copy-button>
+                  <pre><code>Git → Fetch</code></pre>
                 </div>
-                <p class="secondary-info">Inspect output for lines such as <code>Connecting to...</code>,
-                  <code>Server host key...</code>, <code>load_hostkeys</code>, and <code>UserKnownHostsFile</code>.
-                </p>
-
-                <p class="mt-1">After debugging, clean up the temporary environment variable:</p>
+                <p>or:</p>
                 <div class="code-container">
-                  <pre><code>Remove-Item Env:GIT_SSH_COMMAND</code></pre>
-                  <app-copy-button text="Remove-Item Env:GIT_SSH_COMMAND"></app-copy-button>
+                  <pre><code>Git → Pull</code></pre>
                 </div>
+                <p class="success-text mt-05">✓ The repository should now connect to the Git server normally.</p>
               </div>
+            </div>
+
+            <!-- Alternative Manual Solution -->
+            <div class="alt-solution-card">
+              <div class="alt-header">
+                <span class="alt-badge">Alternative</span>
+                <h4>Manual Solution</h4>
+              </div>
+              <p>If the command does not work, open the SSH known-hosts file:</p>
+              <div class="code-container">
+                <pre><code>notepad C:\Users\vansh\.ssh\known_hosts</code></pre>
+                <app-copy-button text="notepad C:\Users\vansh\.ssh\known_hosts"></app-copy-button>
+              </div>
+              <p>The error indicates that the offending key is on: <strong>Line 2</strong></p>
+              <ol class="meta-list" style="margin: 0; padding-left: 1.25rem;">
+                <li>Remove the old entry for <code>ws-srv-git.in.webmyne.com</code> (on Line 2).</li>
+                <li>Save the file.</li>
+                <li>Then test the connection again:</li>
+              </ol>
+              <div class="code-container">
+                <pre><code>ssh -T git&#64;ws-srv-git.in.webmyne.com</code></pre>
+                <app-copy-button text="ssh -T git@ws-srv-git.in.webmyne.com"></app-copy-button>
+              </div>
+              <p class="secondary-info">Confirm the new fingerprint when prompted.</p>
             </div>
           </div>
         </div>
 
-        <!-- Tab 4: Summary -->
+        <!-- Tab 4: Quick Fix & Summary -->
         <div *ngIf="activeTab === 'takeaways'" class="tab-panel fade-in">
           <div class="summary-wrapper">
-            <!-- Security Warning Box -->
+            <!-- Quick Fix Card -->
+            <div class="sub-card quick-fix-card">
+              <h3>⚡ Quick Fix</h3>
+              <p>For a server change that has already been verified by the administrator:</p>
+              <div class="code-container">
+                <pre><code>ssh-keygen -R ws-srv-git.in.webmyne.com
+
+ssh -T git&#64;ws-srv-git.in.webmyne.com
+
+git fetch</code></pre>
+                <app-copy-button text="ssh-keygen -R ws-srv-git.in.webmyne.com
+
+ssh -T git@ws-srv-git.in.webmyne.com
+
+git fetch"></app-copy-button>
+              </div>
+            </div>
+
+            <!-- Verification Card -->
+            <div class="sub-card info-card">
+              <h3>🔍 Verification</h3>
+              <p>After fixing the host key, verify the remote repository:</p>
+              <div class="code-container">
+                <pre><code>git remote -v</code></pre>
+                <app-copy-button text="git remote -v"></app-copy-button>
+              </div>
+              <p class="mt-1">Then test:</p>
+              <div class="code-container">
+                <pre><code>git fetch</code></pre>
+                <app-copy-button text="git fetch"></app-copy-button>
+              </div>
+              <div class="success-callout mt-1">
+                <span class="callout-icon">🎉</span>
+                <span>If the fetch completes successfully, the SSH host-key issue has been resolved.</span>
+              </div>
+            </div>
+
+            <!-- Important Note / Security Warning -->
             <div class="note-box danger-box">
               <span class="icon">🛡️</span>
               <div>
-                <h4>12. Important Security Note</h4>
-                <p>A changed SSH host key is a serious warning but doesn't always indicate a security attack. It is
-                  frequently caused by server upgrades, rebuilds, IP reassignments, or DNS shifts. However, never bypass
-                  verification blindly: always confirm the new fingerprint with your Git/server administrator.</p>
-                <p class="mt-05">In this scenario, two different fingerprints were active due to resolving to separate
-                  IPs (<code>192.168.1.231</code> vs <code>192.168.1.254</code>). This is a network/DNS level issue that
-                  should be raised to network administrators if both continue to be used.</p>
+                <h4>Important Note</h4>
+                <p>
+                  The <code>known_hosts</code> file stores SSH host keys for servers that the computer has previously
+                  connected to. SSH compares the stored key with the key received from the server.
+                </p>
+                <p class="mt-05">
+                  If the keys do not match, SSH blocks the connection to protect against potentially connecting to an
+                  impersonated server.
+                </p>
+                <p class="mt-05">
+                  Therefore, <strong>always verify the new server fingerprint before trusting a changed host
+                    key</strong>.
+                </p>
               </div>
-            </div>
-
-            <!-- Quick Fix Commands Card -->
-            <div class="sub-card quick-fix-card mt-2">
-              <h3>13. Final Quick-Fix Commands</h3>
-              <div class="code-container">
-                <pre><code># 1. Remove old host key
-ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"
-
-# 2. Test SSH
-ssh -T git&#64;ws-srv-git.in.webmyne.com
-
-# 3. Configure Git to use Windows OpenSSH
-git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
-
-# 4. Verify Git SSH configuration
-git config --global --get core.sshCommand
-
-# 5. Fetch repository
-git fetch origin</code></pre>
-                <app-copy-button text='# Remove old host key
-ssh-keygen -R ws-srv-git.in.webmyne.com -f "$env:USERPROFILE\.ssh\known_hosts"
-
-# Test SSH
-ssh -T git@ws-srv-git.in.webmyne.com
-
-# Configure Git to use Windows OpenSSH
-git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
-
-# Verify Git SSH configuration
-git config --global --get core.sshCommand
-
-# Fetch repository
-git fetch origin'></app-copy-button>
-              </div>
-            </div>
-
-            <!-- Root Cause Summary Box -->
-            <div class="root-cause-box mt-2">
-              <h4>14. Root Cause Summary</h4>
-              <p><strong>Root Cause:</strong> The Git repository was accessible, and the user's SSH authentication was
-                valid. The failure was caused by an SSH host-key mismatch combined with Git using a different SSH
-                environment/server resolution than the normal PowerShell SSH command.</p>
-              <p><strong>Solution:</strong> Purge the stale host key from <code>known_hosts</code>, verify the new
-                server fingerprint, confirm SSH connection via <code>ssh -T</code>, configure Git to explicitly use
-                Windows OpenSSH, and fetch again.</p>
             </div>
           </div>
         </div>
